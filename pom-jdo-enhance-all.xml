@@ -82,7 +82,7 @@
             </activation>
             <modules>
                 <module>module-persons</module>
-                <module>module-simple</module>
+                <module>module-timetable</module>
             </modules>
         </profile>
     </profiles>
