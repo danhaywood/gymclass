@@ -25,12 +25,16 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>gymclass-application</artifactId>
-    <name>GymClass Application</name>
+    <artifactId>gymclass-module-simple</artifactId>
+    <name>GymClass Simple Module</name>
 
-    <description>This defines the application (manifest) and runs application-level fixtures and integration (smoke) tests</description>
+    <properties>
+        <isis-maven-plugin.validate.appManifest>domainapp.modules.simple.SimpleModuleManifest</isis-maven-plugin.validate.appManifest>
 
-    <packaging>jar</packaging>
+        <maven-checkstyle-plugin.configLocation>${project.parent.basedir}/_checks/checkstyle.xml</maven-checkstyle-plugin.configLocation>
+        <maven-pmd-plugin.ruleset>${project.parent.basedir}/_checks/pmd.xml</maven-pmd-plugin.ruleset>
+
+    </properties>
 
     <build>
         <resources>
@@ -81,13 +85,28 @@
                         </mixin>
                         <mixin>
                             <groupId>com.danhaywood.mavenmixin</groupId>
+                            <artifactId>datanucleusenhance</artifactId>
+                            <version>${mavenmixin-datanucleusenhance.version}</version>
+                        </mixin>
+                        <mixin>
+                            <groupId>com.danhaywood.mavenmixin</groupId>
+                            <artifactId>isisvalidate</artifactId>
+                            <version>${mavenmixin-isisvalidate.version}</version>
+                        </mixin>
+                        <mixin>
+                            <groupId>com.danhaywood.mavenmixin</groupId>
                             <artifactId>surefire</artifactId>
                             <version>${mavenmixin-surefire.version}</version>
                         </mixin>
                         <mixin>
                             <groupId>com.danhaywood.mavenmixin</groupId>
-                            <artifactId>cucumberreporting</artifactId>
-                            <version>${mavenmixin-cucumberreporting.version}</version>
+                            <artifactId>sourceandjavadoc</artifactId>
+                            <version>${mavenmixin-sourceandjavadoc.version}</version>
+                        </mixin>
+                        <mixin>
+                            <groupId>com.danhaywood.mavenmixin</groupId>
+                            <artifactId>staticanalysis</artifactId>
+                            <version>${mavenmixin-staticanalysis.version}</version>
                         </mixin>
                     </mixins>
                 </configuration>
@@ -96,56 +115,9 @@
     </build>
 
     <dependencies>
-
-        <!-- this app -->
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>gymclass-module-persons</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>gymclass-module-persons</artifactId>
-            <type>test-jar</type>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>gymclass-module-timetable</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>gymclass-module-timetable</artifactId>
-            <type>test-jar</type>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>gymclass-module-customers</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>gymclass-module-customers</artifactId>
-            <type>test-jar</type>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>gymclass-module-simple</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>gymclass-module-simple</artifactId>
-            <type>test-jar</type>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- isis -->
         <dependency>
             <groupId>org.apache.isis.core</groupId>
-            <artifactId>isis-core-wrapper</artifactId>
+            <artifactId>isis-core-applib</artifactId>
         </dependency>
 
         <dependency>
@@ -154,6 +126,11 @@
             <version>${mavendeps-isistesting.version}</version>
             <type>pom</type>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
         </dependency>
 
     </dependencies>

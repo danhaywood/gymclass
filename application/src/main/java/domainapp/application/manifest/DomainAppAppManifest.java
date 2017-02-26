@@ -37,6 +37,7 @@ import domainapp.application.services.DomainAppApplicationModuleServicesSubmodul
 import domainapp.modules.persons.dom.PersonsModuleDomSubmodule;
 import domainapp.modules.timetable.dom.TimeTableModuleDomSubmodule;
 import domainapp.modules.customers.dom.CustomersModuleDomSubmodule;
+import domainapp.modules.simple.dom.SimpleModuleDomSubmodule;
 
 /**
  * Bootstrap the application.
@@ -78,6 +79,7 @@ public class DomainAppAppManifest implements AppManifest {
                 PersonsModuleDomSubmodule.class,
                 TimeTableModuleDomSubmodule.class,
                 CustomersModuleDomSubmodule.class,
+                SimpleModuleDomSubmodule.class,
                 DomainAppApplicationModuleFixtureSubmodule.class,
                 DomainAppApplicationModuleServicesSubmodule.class
         ));
