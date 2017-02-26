@@ -26,7 +26,7 @@ public class TimeTableModuleTearDown extends FixtureScript {
 
     @Override
     protected void execute(ExecutionContext executionContext) {
-        isisJdoSupport.executeUpdate("delete from \"timetable\".\"SimpleObject\"");
+        isisJdoSupport.executeUpdate("delete from \"timetable\".\"GymClassDescription\"");
     }
 
 

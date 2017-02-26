@@ -34,9 +34,9 @@ import org.apache.isis.applib.fixturescripts.FixtureScript;
 import org.apache.isis.applib.fixturescripts.FixtureScripts;
 import org.apache.isis.applib.services.xactn.TransactionService;
 
-import domainapp.modules.timetable.dom.impl.SimpleObject;
-import domainapp.modules.timetable.dom.impl.SimpleObjectMenu;
-import domainapp.modules.timetable.fixture.scenario.CreateSimpleObjects;
+import domainapp.modules.timetable.dom.impl.GymClassDescription;
+import domainapp.modules.timetable.dom.impl.GymClassDescriptionMenu;
+import domainapp.modules.timetable.fixture.scenario.CreateGymClassDescriptions;
 import domainapp.modules.timetable.fixture.teardown.TimeTableModuleTearDown;
 import domainapp.modules.timetable.integtests.TimeTableModuleIntegTestAbstract;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -48,7 +48,7 @@ public class TimeTableObjectMenu_IntegTest extends TimeTableModuleIntegTestAbstr
     @Inject
     TransactionService transactionService;
     @Inject
-    SimpleObjectMenu menu;
+    GymClassDescriptionMenu menu;
 
     public static class ListAll extends TimeTableObjectMenu_IntegTest {
 
@@ -57,18 +57,18 @@ public class TimeTableObjectMenu_IntegTest extends TimeTableModuleIntegTestAbstr
 
             // given
             fixtureScripts.runFixtureScript(new TimeTableModuleTearDown(), null);
-            CreateSimpleObjects fs = new CreateSimpleObjects();
+            CreateGymClassDescriptions fs = new CreateGymClassDescriptions();
             fixtureScripts.runFixtureScript(fs, null);
             transactionService.nextTransaction();
 
             // when
-            final List<SimpleObject> all = wrap(menu).listAll();
+            final List<GymClassDescription> all = wrap(menu).listAll();
 
             // then
-            assertThat(all).hasSize(fs.getSimpleObjects().size());
+            assertThat(all).hasSize(fs.getGymClassDescriptions().size());
 
-            SimpleObject simpleObject = wrap(all.get(0));
-            assertThat(simpleObject.getName()).isEqualTo(fs.getSimpleObjects().get(0).getName());
+            GymClassDescription gymClassDescription = wrap(all.get(0));
+            assertThat(gymClassDescription.getName()).isEqualTo(fs.getGymClassDescriptions().get(0).getName());
         }
 
         @Test
@@ -80,7 +80,7 @@ public class TimeTableObjectMenu_IntegTest extends TimeTableModuleIntegTestAbstr
             transactionService.nextTransaction();
 
             // when
-            final List<SimpleObject> all = wrap(menu).listAll();
+            final List<GymClassDescription> all = wrap(menu).listAll();
 
             // then
             assertThat(all).hasSize(0);
@@ -101,7 +101,7 @@ public class TimeTableObjectMenu_IntegTest extends TimeTableModuleIntegTestAbstr
             wrap(menu).create("Faz");
 
             // then
-            final List<SimpleObject> all = wrap(menu).listAll();
+            final List<GymClassDescription> all = wrap(menu).listAll();
             assertThat(all).hasSize(1);
         }
 

@@ -33,10 +33,10 @@ import org.apache.isis.applib.services.xactn.TransactionService;
 import org.apache.isis.core.metamodel.services.jdosupport.Persistable_datanucleusIdLong;
 import org.apache.isis.core.metamodel.services.jdosupport.Persistable_datanucleusVersionTimestamp;
 
-import domainapp.modules.timetable.dom.impl.SimpleObject;
-import domainapp.modules.timetable.dom.impl.SimpleObjectMenu;
-import domainapp.modules.timetable.fixture.scenario.CreateSimpleObjects;
-import domainapp.modules.timetable.fixture.scenario.SimpleObjectData;
+import domainapp.modules.timetable.dom.impl.GymClassDescription;
+import domainapp.modules.timetable.dom.impl.GymClassDescriptionMenu;
+import domainapp.modules.timetable.fixture.scenario.CreateGymClassDescriptions;
+import domainapp.modules.timetable.fixture.scenario.GymClassDescriptionData;
 import domainapp.modules.timetable.fixture.teardown.TimeTableModuleTearDown;
 import domainapp.modules.timetable.integtests.TimeTableModuleIntegTestAbstract;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -46,23 +46,23 @@ public class TimeTableObject_IntegTest extends TimeTableModuleIntegTestAbstract 
     @Inject
     FixtureScripts fixtureScripts;
     @Inject
-    SimpleObjectMenu simpleObjectMenu;
+    GymClassDescriptionMenu gymClassDescriptionMenu;
     @Inject
     TransactionService transactionService;
 
-    SimpleObject simpleObject;
+    GymClassDescription gymClassDescription;
 
     @Before
     public void setUp() throws Exception {
         // given
         fixtureScripts.runFixtureScript(new TimeTableModuleTearDown(), null);
-        CreateSimpleObjects fs = new CreateSimpleObjects().setNumber(1);
+        CreateGymClassDescriptions fs = new CreateGymClassDescriptions().setNumber(1);
         fixtureScripts.runFixtureScript(fs, null);
         transactionService.nextTransaction();
 
-        simpleObject = SimpleObjectData.FOO.findWith(wrap(simpleObjectMenu));
+        gymClassDescription = GymClassDescriptionData.FOO.findWith(wrap(gymClassDescriptionMenu));
 
-        assertThat(simpleObject).isNotNull();
+        assertThat(gymClassDescription).isNotNull();
     }
 
     public static class Name extends TimeTableObject_IntegTest {
@@ -70,10 +70,10 @@ public class TimeTableObject_IntegTest extends TimeTableModuleIntegTestAbstract 
         @Test
         public void accessible() throws Exception {
             // when
-            final String name = wrap(simpleObject).getName();
+            final String name = wrap(gymClassDescription).getName();
 
             // then
-            assertThat(name).isEqualTo(simpleObject.getName());
+            assertThat(name).isEqualTo(gymClassDescription.getName());
         }
 
         @Test
@@ -82,7 +82,7 @@ public class TimeTableObject_IntegTest extends TimeTableModuleIntegTestAbstract 
             expectedExceptions.expect(DisabledException.class);
 
             // when
-            wrap(simpleObject).setName("new name");
+            wrap(gymClassDescription).setName("new name");
         }
 
     }
@@ -93,11 +93,11 @@ public class TimeTableObject_IntegTest extends TimeTableModuleIntegTestAbstract 
         public void can_be_updated_directly() throws Exception {
 
             // when
-            wrap(simpleObject).updateName("new name");
+            wrap(gymClassDescription).updateName("new name");
             transactionService.nextTransaction();
 
             // then
-            assertThat(wrap(simpleObject).getName()).isEqualTo("new name");
+            assertThat(wrap(gymClassDescription).getName()).isEqualTo("new name");
         }
 
         @Test
@@ -108,7 +108,7 @@ public class TimeTableObject_IntegTest extends TimeTableModuleIntegTestAbstract 
             expectedExceptions.expectMessage("Exclamation mark is not allowed");
 
             // when
-            wrap(simpleObject).updateName("new name!");
+            wrap(gymClassDescription).updateName("new name!");
         }
     }
 
@@ -122,10 +122,10 @@ public class TimeTableObject_IntegTest extends TimeTableModuleIntegTestAbstract 
         public void interpolatesName() throws Exception {
 
             // given
-            final String name = wrap(simpleObject).getName();
+            final String name = wrap(gymClassDescription).getName();
 
             // when
-            final String title = titleService.titleOf(simpleObject);
+            final String title = titleService.titleOf(gymClassDescription);
 
             // then
             assertThat(title).isEqualTo("Object: " + name);
@@ -137,7 +137,7 @@ public class TimeTableObject_IntegTest extends TimeTableModuleIntegTestAbstract 
         @Test
         public void should_be_populated() throws Exception {
             // when
-            final Long id = mixin(Persistable_datanucleusIdLong.class, simpleObject).exec();
+            final Long id = mixin(Persistable_datanucleusIdLong.class, gymClassDescription).exec();
 
             // then
             assertThat(id).isGreaterThanOrEqualTo(0);
@@ -149,7 +149,7 @@ public class TimeTableObject_IntegTest extends TimeTableModuleIntegTestAbstract 
         @Test
         public void should_be_populated() throws Exception {
             // when
-            final Timestamp timestamp = mixin(Persistable_datanucleusVersionTimestamp.class, simpleObject).exec();
+            final Timestamp timestamp = mixin(Persistable_datanucleusVersionTimestamp.class, gymClassDescription).exec();
             // then
             assertThat(timestamp).isNotNull();
         }

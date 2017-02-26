@@ -21,28 +21,28 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SimpleObject_Test {
+public class GymClassDescription_Test {
 
-    SimpleObject simpleObject;
+    GymClassDescription gymClassDescription;
 
     @Before
     public void setUp() throws Exception {
-        simpleObject = new SimpleObject("Foobar");
+        gymClassDescription = new GymClassDescription("Foobar");
     }
 
-    public static class Name extends SimpleObject_Test {
+    public static class Name extends GymClassDescription_Test {
 
         @Test
         public void happyCase() throws Exception {
             // given
-            assertThat(simpleObject.getName()).isEqualTo("Foobar");
+            assertThat(gymClassDescription.getName()).isEqualTo("Foobar");
 
             // when
             String name = "Foobar - updated";
-            simpleObject.setName(name);
+            gymClassDescription.setName(name);
 
             // then
-            assertThat(simpleObject.getName()).isEqualTo(name);
+            assertThat(gymClassDescription.getName()).isEqualTo(name);
         }
     }
 
