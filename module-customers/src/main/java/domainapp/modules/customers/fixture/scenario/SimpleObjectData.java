@@ -16,8 +16,34 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package domainapp.modules.simple.fixture;
 
-public final class SimpleModuleFixtureSubmodule {
-    private SimpleModuleFixtureSubmodule(){}
+package domainapp.modules.customers.fixture.scenario;
+
+import domainapp.modules.customers.dom.impl.SimpleObject;
+import domainapp.modules.customers.dom.impl.SimpleObjectMenu;
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+public enum SimpleObjectData {
+
+    FOO("Foo"),
+    BAR("Bar"),
+    BAZ("Baz"),
+    FRODO("Frodo"),
+    FROYO("Froyo"),
+    FIZZ("Fizz"),
+    BIP("Bip"),
+    BOP("Bop"),
+    BANG("Bang"),
+    BOO("Boo");
+
+    private final String name;
+
+    public SimpleObject createWith(final SimpleObjectMenu menu) {
+        return menu.create(name);
+    }
+
+    public SimpleObject findWith(final SimpleObjectMenu menu) {
+        return menu.findByName(name).get(0);
+    }
 }

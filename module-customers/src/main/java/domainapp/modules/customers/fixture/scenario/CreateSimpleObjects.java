@@ -17,7 +17,7 @@
  *  under the License.
  */
 
-package domainapp.modules.simple.fixture.scenario;
+package domainapp.modules.customers.fixture.scenario;
 
 import java.util.List;
 
@@ -27,8 +27,8 @@ import com.google.common.collect.Lists;
 
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 
-import domainapp.modules.simple.dom.impl.SimpleObject;
-import domainapp.modules.simple.dom.impl.SimpleObjectMenu;
+import domainapp.modules.customers.dom.impl.SimpleObject;
+import domainapp.modules.customers.dom.impl.SimpleObjectMenu;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;

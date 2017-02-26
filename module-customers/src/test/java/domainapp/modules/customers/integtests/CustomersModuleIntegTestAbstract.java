@@ -16,7 +16,7 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package domainapp.modules.simple.integtests;
+package domainapp.modules.customers.integtests;
 
 import java.util.List;
 import java.util.Map;
@@ -35,9 +35,9 @@ import org.apache.isis.core.integtestsupport.IntegrationTestAbstract;
 import org.apache.isis.core.integtestsupport.IsisSystemForTest;
 import org.apache.isis.core.integtestsupport.scenarios.ScenarioExecutionForIntegration;
 
-import domainapp.modules.simple.SimpleModuleManifest;
+import domainapp.modules.customers.CustomersModuleManifest;
 
-public abstract class SimpleModuleIntegTestAbstract extends IntegrationTestAbstract {
+public abstract class CustomersModuleIntegTestAbstract extends IntegrationTestAbstract {
 
     @BeforeClass
     public static void initSystem() {
@@ -46,7 +46,7 @@ public abstract class SimpleModuleIntegTestAbstract extends IntegrationTestAbstr
         if(isft == null) {
             isft = new IsisSystemForTest.Builder()
                     .withLoggingAt(org.apache.log4j.Level.INFO)
-                    .with(new SimpleModuleManifest() {
+                    .with(new CustomersModuleManifest() {
                         @Override
                         public Map<String, String> getConfigurationProperties() {
                             final Map<String, String> map = Maps.newHashMap();
@@ -76,7 +76,7 @@ public abstract class SimpleModuleIntegTestAbstract extends IntegrationTestAbstr
     public static class ModuleFixtureScriptsSpecificationProvider implements FixtureScriptsSpecificationProvider {
         @Override
         public FixtureScriptsSpecification getSpecification() {
-            return FixtureScriptsSpecification.builder("domainapp.modules.simple").with(
+            return FixtureScriptsSpecification.builder("domainapp.modules.customers").with(
                     FixtureScripts.MultipleExecutionStrategy.EXECUTE_ONCE_BY_VALUE).build();
         }
     }

@@ -36,7 +36,7 @@ import domainapp.application.fixture.DomainAppApplicationModuleFixtureSubmodule;
 import domainapp.application.services.DomainAppApplicationModuleServicesSubmodule;
 import domainapp.modules.persons.dom.PersonsModuleDomSubmodule;
 import domainapp.modules.timetable.dom.TimeTableModuleDomSubmodule;
-import domainapp.modules.simple.dom.SimpleModuleDomSubmodule;
+import domainapp.modules.customers.dom.CustomersModuleDomSubmodule;
 
 /**
  * Bootstrap the application.
@@ -77,7 +77,7 @@ public class DomainAppAppManifest implements AppManifest {
         modules.addAll(Arrays.asList(
                 PersonsModuleDomSubmodule.class,
                 TimeTableModuleDomSubmodule.class,
-                SimpleModuleDomSubmodule.class,
+                CustomersModuleDomSubmodule.class,
                 DomainAppApplicationModuleFixtureSubmodule.class,
                 DomainAppApplicationModuleServicesSubmodule.class
         ));
