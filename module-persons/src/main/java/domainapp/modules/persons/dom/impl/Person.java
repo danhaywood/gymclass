@@ -52,10 +52,10 @@ import lombok.Setter;
         @javax.jdo.annotations.Query(
                 name = "findByName",
                 value = "SELECT "
-                        + "FROM domainapp.modules.persons.dom.impl.SimpleObject "
+                        + "FROM domainapp.modules.persons.dom.impl.Person "
                         + "WHERE name.indexOf(:name) >= 0 ")
 })
-@javax.jdo.annotations.Unique(name="SimpleObject_name_UNQ", members = {"name"})
+@javax.jdo.annotations.Unique(name="Person_name_UNQ", members = {"name"})
 @DomainObject() // objectType inferred from @PersistenceCapable#schema
 public class Person implements Comparable<Person> {
 
