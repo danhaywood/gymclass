@@ -31,7 +31,7 @@ import static org.junit.Assert.assertThat;
 public class PersonMenuGlue extends CukeGlueAbstract {
 
     @Given("^there are.* (\\d+) persons$")
-    public void there_are_N_persons(int n) throws Throwable {
+    public void there_are_N_simple_objects(int n) throws Throwable {
         try {
             final List<Person> list = personMenu().listAll();
             assertThat(list.size(), is(n));

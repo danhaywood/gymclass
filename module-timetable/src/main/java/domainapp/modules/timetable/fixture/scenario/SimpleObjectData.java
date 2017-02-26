@@ -16,15 +16,34 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package domainapp.modules.simple.dom;
 
-public final class SimpleModuleDomSubmodule {
-    private SimpleModuleDomSubmodule(){}
+package domainapp.modules.timetable.fixture.scenario;
 
-    public static class PropertyDomainEvent<S,T>
-            extends org.apache.isis.applib.services.eventbus.PropertyDomainEvent<S,T> {}
-    public static class CollectionDomainEvent<S,T>
-            extends org.apache.isis.applib.services.eventbus.CollectionDomainEvent<S,T> {}
-    public static class ActionDomainEvent<S> extends
-            org.apache.isis.applib.services.eventbus.ActionDomainEvent<S> {}
+import domainapp.modules.timetable.dom.impl.SimpleObject;
+import domainapp.modules.timetable.dom.impl.SimpleObjectMenu;
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+public enum SimpleObjectData {
+
+    FOO("Foo"),
+    BAR("Bar"),
+    BAZ("Baz"),
+    FRODO("Frodo"),
+    FROYO("Froyo"),
+    FIZZ("Fizz"),
+    BIP("Bip"),
+    BOP("Bop"),
+    BANG("Bang"),
+    BOO("Boo");
+
+    private final String name;
+
+    public SimpleObject createWith(final SimpleObjectMenu menu) {
+        return menu.create(name);
+    }
+
+    public SimpleObject findWith(final SimpleObjectMenu menu) {
+        return menu.findByName(name).get(0);
+    }
 }

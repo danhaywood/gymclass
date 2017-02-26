@@ -16,8 +16,15 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package domainapp.modules.simple.fixture;
+package domainapp.modules.timetable.dom;
 
-public final class SimpleModuleFixtureSubmodule {
-    private SimpleModuleFixtureSubmodule(){}
+public final class SimpleModuleDomSubmodule {
+    private SimpleModuleDomSubmodule(){}
+
+    public static class PropertyDomainEvent<S,T>
+            extends org.apache.isis.applib.services.eventbus.PropertyDomainEvent<S,T> {}
+    public static class CollectionDomainEvent<S,T>
+            extends org.apache.isis.applib.services.eventbus.CollectionDomainEvent<S,T> {}
+    public static class ActionDomainEvent<S> extends
+            org.apache.isis.applib.services.eventbus.ActionDomainEvent<S> {}
 }

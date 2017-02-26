@@ -17,33 +17,20 @@
  *  under the License.
  */
 
-package domainapp.modules.simple.fixture.scenario;
+package domainapp.modules.timetable.fixture.teardown;
 
-import domainapp.modules.simple.dom.impl.SimpleObject;
-import domainapp.modules.simple.dom.impl.SimpleObjectMenu;
-import lombok.AllArgsConstructor;
+import org.apache.isis.applib.fixturescripts.FixtureScript;
+import org.apache.isis.applib.services.jdosupport.IsisJdoSupport;
 
-@AllArgsConstructor
-public enum SimpleObjectData {
+public class SimpleModuleTearDown extends FixtureScript {
 
-    FOO("Foo"),
-    BAR("Bar"),
-    BAZ("Baz"),
-    FRODO("Frodo"),
-    FROYO("Froyo"),
-    FIZZ("Fizz"),
-    BIP("Bip"),
-    BOP("Bop"),
-    BANG("Bang"),
-    BOO("Boo");
-
-    private final String name;
-
-    public SimpleObject createWith(final SimpleObjectMenu menu) {
-        return menu.create(name);
+    @Override
+    protected void execute(ExecutionContext executionContext) {
+        isisJdoSupport.executeUpdate("delete from \"timetable\".\"SimpleObject\"");
     }
 
-    public SimpleObject findWith(final SimpleObjectMenu menu) {
-        return menu.findByName(name).get(0);
-    }
+
+    @javax.inject.Inject
+    private IsisJdoSupport isisJdoSupport;
+
 }

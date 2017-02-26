@@ -16,7 +16,7 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package domainapp.modules.simple.integtests.tests;
+package domainapp.modules.timetable.integtests.tests;
 
 import java.sql.Timestamp;
 
@@ -33,12 +33,12 @@ import org.apache.isis.applib.services.xactn.TransactionService;
 import org.apache.isis.core.metamodel.services.jdosupport.Persistable_datanucleusIdLong;
 import org.apache.isis.core.metamodel.services.jdosupport.Persistable_datanucleusVersionTimestamp;
 
-import domainapp.modules.simple.dom.impl.SimpleObject;
-import domainapp.modules.simple.dom.impl.SimpleObjectMenu;
-import domainapp.modules.simple.fixture.scenario.CreateSimpleObjects;
-import domainapp.modules.simple.fixture.scenario.SimpleObjectData;
-import domainapp.modules.simple.fixture.teardown.SimpleModuleTearDown;
-import domainapp.modules.simple.integtests.SimpleModuleIntegTestAbstract;
+import domainapp.modules.timetable.dom.impl.SimpleObject;
+import domainapp.modules.timetable.dom.impl.SimpleObjectMenu;
+import domainapp.modules.timetable.fixture.scenario.CreateSimpleObjects;
+import domainapp.modules.timetable.fixture.scenario.SimpleObjectData;
+import domainapp.modules.timetable.fixture.teardown.SimpleModuleTearDown;
+import domainapp.modules.timetable.integtests.SimpleModuleIntegTestAbstract;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
