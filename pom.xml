@@ -345,6 +345,17 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
+                <artifactId>gymclass-module-simple</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>gymclass-module-simple</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <type>test-jar</type>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>gymclass-application</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
@@ -389,6 +400,7 @@
 
   <modules>
     <module>module-persons</module>
+    <module>module-simple</module>
     <module>application</module>
     <module>webapp</module>
   </modules>

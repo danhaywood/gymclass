@@ -82,6 +82,7 @@
             </activation>
             <modules>
                 <module>module-persons</module>
+                <module>module-simple</module>
             </modules>
         </profile>
     </profiles>
