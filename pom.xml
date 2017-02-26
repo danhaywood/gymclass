@@ -388,7 +388,7 @@
     </profiles>
 
   <modules>
-    <module>module-simple</module>
+    <module>module-persons</module>
     <module>application</module>
     <module>webapp</module>
   </modules>
