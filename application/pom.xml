@@ -122,11 +122,11 @@
 
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>gymclass-module-simple</artifactId>
+            <artifactId>gymclass-module-customers</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>gymclass-module-simple</artifactId>
+            <artifactId>gymclass-module-customers</artifactId>
             <type>test-jar</type>
             <scope>test</scope>
         </dependency>
