@@ -34,41 +34,41 @@ import org.apache.isis.applib.fixturescripts.FixtureScript;
 import org.apache.isis.applib.fixturescripts.FixtureScripts;
 import org.apache.isis.applib.services.xactn.TransactionService;
 
-import domainapp.modules.customers.dom.impl.SimpleObject;
-import domainapp.modules.customers.dom.impl.SimpleObjectMenu;
-import domainapp.modules.customers.fixture.scenario.CreateSimpleObjects;
+import domainapp.modules.customers.dom.impl.GymMember;
+import domainapp.modules.customers.dom.impl.GymMemberMenu;
+import domainapp.modules.customers.fixture.scenario.CreateGymMembers;
 import domainapp.modules.customers.fixture.teardown.CustomersModuleTearDown;
 import domainapp.modules.customers.integtests.CustomersModuleIntegTestAbstract;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CustomersObjectMenu_IntegTest extends CustomersModuleIntegTestAbstract {
+public class GymMemberMenu_IntegTest extends CustomersModuleIntegTestAbstract {
 
     @Inject
     FixtureScripts fixtureScripts;
     @Inject
     TransactionService transactionService;
     @Inject
-    SimpleObjectMenu menu;
+    GymMemberMenu menu;
 
-    public static class ListAll extends CustomersObjectMenu_IntegTest {
+    public static class ListAll extends GymMemberMenu_IntegTest {
 
         @Test
         public void happyCase() throws Exception {
 
             // given
             fixtureScripts.runFixtureScript(new CustomersModuleTearDown(), null);
-            CreateSimpleObjects fs = new CreateSimpleObjects();
+            CreateGymMembers fs = new CreateGymMembers();
             fixtureScripts.runFixtureScript(fs, null);
             transactionService.nextTransaction();
 
             // when
-            final List<SimpleObject> all = wrap(menu).listAll();
+            final List<GymMember> all = wrap(menu).listAll();
 
             // then
-            assertThat(all).hasSize(fs.getSimpleObjects().size());
+            assertThat(all).hasSize(fs.getGymMembers().size());
 
-            SimpleObject simpleObject = wrap(all.get(0));
-            assertThat(simpleObject.getName()).isEqualTo(fs.getSimpleObjects().get(0).getName());
+            GymMember gymMember = wrap(all.get(0));
+            assertThat(gymMember.getName()).isEqualTo(fs.getGymMembers().get(0).getName());
         }
 
         @Test
@@ -80,14 +80,14 @@ public class CustomersObjectMenu_IntegTest extends CustomersModuleIntegTestAbstr
             transactionService.nextTransaction();
 
             // when
-            final List<SimpleObject> all = wrap(menu).listAll();
+            final List<GymMember> all = wrap(menu).listAll();
 
             // then
             assertThat(all).hasSize(0);
         }
     }
 
-    public static class Create extends CustomersObjectMenu_IntegTest {
+    public static class Create extends GymMemberMenu_IntegTest {
 
         @Test
         public void happyCase() throws Exception {
@@ -101,7 +101,7 @@ public class CustomersObjectMenu_IntegTest extends CustomersModuleIntegTestAbstr
             wrap(menu).create("Faz");
 
             // then
-            final List<SimpleObject> all = wrap(menu).listAll();
+            final List<GymMember> all = wrap(menu).listAll();
             assertThat(all).hasSize(1);
         }
 

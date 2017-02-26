@@ -37,7 +37,7 @@ import org.apache.isis.core.unittestsupport.jmocking.JUnitRuleMockery2.Mode;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SimpleObjectRepository_Test {
+public class GymMemberRepository_Test {
 
     @Rule
     public JUnitRuleMockery2 context = JUnitRuleMockery2.createFor(Mode.INTERFACES_AND_CLASSES);
@@ -48,16 +48,16 @@ public class SimpleObjectRepository_Test {
     @Mock
     RepositoryService mockRepositoryService;
 
-    SimpleObjectRepository simpleObjectRepository;
+    GymMemberRepository gymMemberRepository;
 
     @Before
     public void setUp() throws Exception {
-        simpleObjectRepository = new SimpleObjectRepository();
-        simpleObjectRepository.repositoryService = mockRepositoryService;
-        simpleObjectRepository.serviceRegistry = mockServiceRegistry;
+        gymMemberRepository = new GymMemberRepository();
+        gymMemberRepository.repositoryService = mockRepositoryService;
+        gymMemberRepository.serviceRegistry = mockServiceRegistry;
     }
 
-    public static class Create extends SimpleObjectRepository_Test {
+    public static class Create extends GymMemberRepository_Test {
 
         @Test
         public void happyCase() throws Exception {
@@ -68,7 +68,7 @@ public class SimpleObjectRepository_Test {
             final Sequence seq = context.sequence("create");
             context.checking(new Expectations() {
                 {
-                    oneOf(mockServiceRegistry).injectServicesInto(with(any(SimpleObject.class)));
+                    oneOf(mockServiceRegistry).injectServicesInto(with(any(GymMember.class)));
                     inSequence(seq);
 
                     oneOf(mockRepositoryService).persist(with(nameOf(someName)));
@@ -78,17 +78,17 @@ public class SimpleObjectRepository_Test {
             });
 
             // when
-            final SimpleObject obj = simpleObjectRepository.create(someName);
+            final GymMember obj = gymMemberRepository.create(someName);
 
             // then
             assertThat(obj).isNotNull();
             assertThat(obj.getName()).isEqualTo(someName);
         }
 
-        private static Matcher<SimpleObject> nameOf(final String name) {
-            return new TypeSafeMatcher<SimpleObject>() {
+        private static Matcher<GymMember> nameOf(final String name) {
+            return new TypeSafeMatcher<GymMember>() {
                 @Override
-                protected boolean matchesSafely(final SimpleObject item) {
+                protected boolean matchesSafely(final GymMember item) {
                     return name.equals(item.getName());
                 }
 
@@ -100,23 +100,23 @@ public class SimpleObjectRepository_Test {
         }
     }
 
-    public static class ListAll extends SimpleObjectRepository_Test {
+    public static class ListAll extends GymMemberRepository_Test {
 
         @Test
         public void happyCase() throws Exception {
 
             // given
-            final List<SimpleObject> all = Lists.newArrayList();
+            final List<GymMember> all = Lists.newArrayList();
 
             context.checking(new Expectations() {
                 {
-                    oneOf(mockRepositoryService).allInstances(SimpleObject.class);
+                    oneOf(mockRepositoryService).allInstances(GymMember.class);
                     will(returnValue(all));
                 }
             });
 
             // when
-            final List<SimpleObject> list = simpleObjectRepository.listAll();
+            final List<GymMember> list = gymMemberRepository.listAll();
 
             // then
             assertThat(list).isEqualTo(all);

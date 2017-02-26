@@ -27,14 +27,14 @@ import com.google.common.collect.Lists;
 
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 
-import domainapp.modules.customers.dom.impl.SimpleObject;
-import domainapp.modules.customers.dom.impl.SimpleObjectMenu;
+import domainapp.modules.customers.dom.impl.GymMember;
+import domainapp.modules.customers.dom.impl.GymMemberMenu;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
 @Accessors(chain = true)
-public class CreateSimpleObjects extends FixtureScript {
+public class CreateGymMembers extends FixtureScript {
 
     /**
      * The number of objects to create, up to 10; optional, defaults to 3.
@@ -47,12 +47,12 @@ public class CreateSimpleObjects extends FixtureScript {
      * The objects created by this fixture (output).
      */
     @Getter
-    private final List<SimpleObject> simpleObjects = Lists.newArrayList();
+    private final List<GymMember> gymMembers = Lists.newArrayList();
 
     @Override
     protected void execute(final ExecutionContext ec) {
 
-        int max = SimpleObjectData.values().length;
+        int max = GymMemberData.values().length;
 
         // defaults
         final int number = defaultParam("number", ec, 3);
@@ -64,14 +64,14 @@ public class CreateSimpleObjects extends FixtureScript {
 
         // execute
         for (int i = 0; i < number; i++) {
-            final SimpleObjectData data = SimpleObjectData.values()[i];
-            final SimpleObject simpleObject =  data.createWith(wrap(simpleObjectMenu));
-            ec.addResult(this, simpleObject);
-            simpleObjects.add(simpleObject);
+            final GymMemberData data = GymMemberData.values()[i];
+            final GymMember gymMember =  data.createWith(wrap(gymMemberMenu));
+            ec.addResult(this, gymMember);
+            gymMembers.add(gymMember);
         }
     }
 
     @javax.inject.Inject
-    SimpleObjectMenu simpleObjectMenu;
+    GymMemberMenu gymMemberMenu;
 
 }

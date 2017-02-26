@@ -83,7 +83,7 @@
             <modules>
                 <module>module-persons</module>
                 <module>module-timetable</module>
-                <module>module-simple</module>
+                <module>module-customers</module>
             </modules>
         </profile>
     </profiles>

@@ -33,47 +33,47 @@ import org.apache.isis.applib.services.xactn.TransactionService;
 import org.apache.isis.core.metamodel.services.jdosupport.Persistable_datanucleusIdLong;
 import org.apache.isis.core.metamodel.services.jdosupport.Persistable_datanucleusVersionTimestamp;
 
-import domainapp.modules.customers.dom.impl.SimpleObject;
-import domainapp.modules.customers.dom.impl.SimpleObjectMenu;
-import domainapp.modules.customers.fixture.scenario.CreateSimpleObjects;
-import domainapp.modules.customers.fixture.scenario.SimpleObjectData;
+import domainapp.modules.customers.dom.impl.GymMember;
+import domainapp.modules.customers.dom.impl.GymMemberMenu;
+import domainapp.modules.customers.fixture.scenario.CreateGymMembers;
+import domainapp.modules.customers.fixture.scenario.GymMemberData;
 import domainapp.modules.customers.fixture.teardown.CustomersModuleTearDown;
 import domainapp.modules.customers.integtests.CustomersModuleIntegTestAbstract;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CustomersObject_IntegTest extends CustomersModuleIntegTestAbstract {
+public class GymMembersObject_IntegTest extends CustomersModuleIntegTestAbstract {
 
     @Inject
     FixtureScripts fixtureScripts;
     @Inject
-    SimpleObjectMenu simpleObjectMenu;
+    GymMemberMenu gymMemberMenu;
     @Inject
     TransactionService transactionService;
 
-    SimpleObject simpleObject;
+    GymMember gymMember;
 
     @Before
     public void setUp() throws Exception {
         // given
         fixtureScripts.runFixtureScript(new CustomersModuleTearDown(), null);
-        CreateSimpleObjects fs = new CreateSimpleObjects().setNumber(1);
+        CreateGymMembers fs = new CreateGymMembers().setNumber(1);
         fixtureScripts.runFixtureScript(fs, null);
         transactionService.nextTransaction();
 
-        simpleObject = SimpleObjectData.FOO.findWith(wrap(simpleObjectMenu));
+        gymMember = GymMemberData.FOO.findWith(wrap(gymMemberMenu));
 
-        assertThat(simpleObject).isNotNull();
+        assertThat(gymMember).isNotNull();
     }
 
-    public static class Name extends CustomersObject_IntegTest {
+    public static class Name extends GymMembersObject_IntegTest {
 
         @Test
         public void accessible() throws Exception {
             // when
-            final String name = wrap(simpleObject).getName();
+            final String name = wrap(gymMember).getName();
 
             // then
-            assertThat(name).isEqualTo(simpleObject.getName());
+            assertThat(name).isEqualTo(gymMember.getName());
         }
 
         @Test
@@ -82,22 +82,22 @@ public class CustomersObject_IntegTest extends CustomersModuleIntegTestAbstract 
             expectedExceptions.expect(DisabledException.class);
 
             // when
-            wrap(simpleObject).setName("new name");
+            wrap(gymMember).setName("new name");
         }
 
     }
 
-    public static class UpdateName extends CustomersObject_IntegTest {
+    public static class UpdateName extends GymMembersObject_IntegTest {
 
         @Test
         public void can_be_updated_directly() throws Exception {
 
             // when
-            wrap(simpleObject).updateName("new name");
+            wrap(gymMember).updateName("new name");
             transactionService.nextTransaction();
 
             // then
-            assertThat(wrap(simpleObject).getName()).isEqualTo("new name");
+            assertThat(wrap(gymMember).getName()).isEqualTo("new name");
         }
 
         @Test
@@ -108,12 +108,12 @@ public class CustomersObject_IntegTest extends CustomersModuleIntegTestAbstract 
             expectedExceptions.expectMessage("Exclamation mark is not allowed");
 
             // when
-            wrap(simpleObject).updateName("new name!");
+            wrap(gymMember).updateName("new name!");
         }
     }
 
 
-    public static class Title extends CustomersObject_IntegTest {
+    public static class Title extends GymMembersObject_IntegTest {
 
         @Inject
         TitleService titleService;
@@ -122,34 +122,34 @@ public class CustomersObject_IntegTest extends CustomersModuleIntegTestAbstract 
         public void interpolatesName() throws Exception {
 
             // given
-            final String name = wrap(simpleObject).getName();
+            final String name = wrap(gymMember).getName();
 
             // when
-            final String title = titleService.titleOf(simpleObject);
+            final String title = titleService.titleOf(gymMember);
 
             // then
             assertThat(title).isEqualTo("Object: " + name);
         }
     }
 
-    public static class DataNucleusId extends CustomersObject_IntegTest {
+    public static class DataNucleusId extends GymMembersObject_IntegTest {
 
         @Test
         public void should_be_populated() throws Exception {
             // when
-            final Long id = mixin(Persistable_datanucleusIdLong.class, simpleObject).exec();
+            final Long id = mixin(Persistable_datanucleusIdLong.class, gymMember).exec();
 
             // then
             assertThat(id).isGreaterThanOrEqualTo(0);
         }
     }
 
-    public static class DataNucleusVersionTimestamp extends CustomersObject_IntegTest {
+    public static class DataNucleusVersionTimestamp extends GymMembersObject_IntegTest {
 
         @Test
         public void should_be_populated() throws Exception {
             // when
-            final Timestamp timestamp = mixin(Persistable_datanucleusVersionTimestamp.class, simpleObject).exec();
+            final Timestamp timestamp = mixin(Persistable_datanucleusVersionTimestamp.class, gymMember).exec();
             // then
             assertThat(timestamp).isNotNull();
         }
