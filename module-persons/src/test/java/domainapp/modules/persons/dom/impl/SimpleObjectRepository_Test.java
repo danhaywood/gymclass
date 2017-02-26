@@ -48,13 +48,13 @@ public class SimpleObjectRepository_Test {
     @Mock
     RepositoryService mockRepositoryService;
 
-    SimpleObjectRepository simpleObjectRepository;
+    PersonRepository personRepository;
 
     @Before
     public void setUp() throws Exception {
-        simpleObjectRepository = new SimpleObjectRepository();
-        simpleObjectRepository.repositoryService = mockRepositoryService;
-        simpleObjectRepository.serviceRegistry = mockServiceRegistry;
+        personRepository = new PersonRepository();
+        personRepository.repositoryService = mockRepositoryService;
+        personRepository.serviceRegistry = mockServiceRegistry;
     }
 
     public static class Create extends SimpleObjectRepository_Test {
@@ -68,7 +68,7 @@ public class SimpleObjectRepository_Test {
             final Sequence seq = context.sequence("create");
             context.checking(new Expectations() {
                 {
-                    oneOf(mockServiceRegistry).injectServicesInto(with(any(SimpleObject.class)));
+                    oneOf(mockServiceRegistry).injectServicesInto(with(any(Person.class)));
                     inSequence(seq);
 
                     oneOf(mockRepositoryService).persist(with(nameOf(someName)));
@@ -78,17 +78,17 @@ public class SimpleObjectRepository_Test {
             });
 
             // when
-            final SimpleObject obj = simpleObjectRepository.create(someName);
+            final Person obj = personRepository.create(someName);
 
             // then
             assertThat(obj).isNotNull();
             assertThat(obj.getName()).isEqualTo(someName);
         }
 
-        private static Matcher<SimpleObject> nameOf(final String name) {
-            return new TypeSafeMatcher<SimpleObject>() {
+        private static Matcher<Person> nameOf(final String name) {
+            return new TypeSafeMatcher<Person>() {
                 @Override
-                protected boolean matchesSafely(final SimpleObject item) {
+                protected boolean matchesSafely(final Person item) {
                     return name.equals(item.getName());
                 }
 
@@ -106,17 +106,17 @@ public class SimpleObjectRepository_Test {
         public void happyCase() throws Exception {
 
             // given
-            final List<SimpleObject> all = Lists.newArrayList();
+            final List<Person> all = Lists.newArrayList();
 
             context.checking(new Expectations() {
                 {
-                    oneOf(mockRepositoryService).allInstances(SimpleObject.class);
+                    oneOf(mockRepositoryService).allInstances(Person.class);
                     will(returnValue(all));
                 }
             });
 
             // when
-            final List<SimpleObject> list = simpleObjectRepository.listAll();
+            final List<Person> list = personRepository.listAll();
 
             // then
             assertThat(list).isEqualTo(all);

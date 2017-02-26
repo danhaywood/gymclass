@@ -34,10 +34,10 @@ import org.apache.isis.applib.fixturescripts.FixtureScript;
 import org.apache.isis.applib.fixturescripts.FixtureScripts;
 import org.apache.isis.applib.services.xactn.TransactionService;
 
-import domainapp.modules.persons.dom.impl.SimpleObject;
+import domainapp.modules.persons.dom.impl.Person;
 import domainapp.modules.persons.fixture.scenario.CreateSimpleObjects;
 import domainapp.modules.persons.fixture.teardown.PersonsModuleTearDown;
-import domainapp.modules.persons.dom.impl.SimpleObjectMenu;
+import domainapp.modules.persons.dom.impl.PersonMenu;
 import domainapp.modules.persons.integtests.PersonsModuleIntegTestAbstract;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -48,7 +48,7 @@ public class PersonsObjectMenu_IntegTest extends PersonsModuleIntegTestAbstract 
     @Inject
     TransactionService transactionService;
     @Inject
-    SimpleObjectMenu menu;
+    PersonMenu menu;
 
     public static class ListAll extends PersonsObjectMenu_IntegTest {
 
@@ -62,13 +62,13 @@ public class PersonsObjectMenu_IntegTest extends PersonsModuleIntegTestAbstract 
             transactionService.nextTransaction();
 
             // when
-            final List<SimpleObject> all = wrap(menu).listAll();
+            final List<Person> all = wrap(menu).listAll();
 
             // then
-            assertThat(all).hasSize(fs.getSimpleObjects().size());
+            assertThat(all).hasSize(fs.getPeople().size());
 
-            SimpleObject simpleObject = wrap(all.get(0));
-            assertThat(simpleObject.getName()).isEqualTo(fs.getSimpleObjects().get(0).getName());
+            Person person = wrap(all.get(0));
+            assertThat(person.getName()).isEqualTo(fs.getPeople().get(0).getName());
         }
 
         @Test
@@ -80,7 +80,7 @@ public class PersonsObjectMenu_IntegTest extends PersonsModuleIntegTestAbstract 
             transactionService.nextTransaction();
 
             // when
-            final List<SimpleObject> all = wrap(menu).listAll();
+            final List<Person> all = wrap(menu).listAll();
 
             // then
             assertThat(all).hasSize(0);
@@ -101,7 +101,7 @@ public class PersonsObjectMenu_IntegTest extends PersonsModuleIntegTestAbstract 
             wrap(menu).create("Faz");
 
             // then
-            final List<SimpleObject> all = wrap(menu).listAll();
+            final List<Person> all = wrap(menu).listAll();
             assertThat(all).hasSize(1);
         }
 

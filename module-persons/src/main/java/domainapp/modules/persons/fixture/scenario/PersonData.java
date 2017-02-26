@@ -19,12 +19,12 @@
 
 package domainapp.modules.persons.fixture.scenario;
 
-import domainapp.modules.persons.dom.impl.SimpleObject;
-import domainapp.modules.persons.dom.impl.SimpleObjectMenu;
+import domainapp.modules.persons.dom.impl.Person;
+import domainapp.modules.persons.dom.impl.PersonMenu;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public enum SimpleObjectData {
+public enum PersonData {
 
     FOO("Foo"),
     BAR("Bar"),
@@ -39,11 +39,11 @@ public enum SimpleObjectData {
 
     private final String name;
 
-    public SimpleObject createWith(final SimpleObjectMenu menu) {
+    public Person createWith(final PersonMenu menu) {
         return menu.create(name);
     }
 
-    public SimpleObject findWith(final SimpleObjectMenu menu) {
+    public Person findWith(final PersonMenu menu) {
         return menu.findByName(name).get(0);
     }
 }

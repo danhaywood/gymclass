@@ -57,9 +57,9 @@ import lombok.Setter;
 })
 @javax.jdo.annotations.Unique(name="SimpleObject_name_UNQ", members = {"name"})
 @DomainObject() // objectType inferred from @PersistenceCapable#schema
-public class SimpleObject implements Comparable<SimpleObject> {
+public class Person implements Comparable<Person> {
 
-    public SimpleObject(final String name) {
+    public Person(final String name) {
         setName(name);
     }
 
@@ -77,7 +77,7 @@ public class SimpleObject implements Comparable<SimpleObject> {
 
     //region > updateName (action)
     @Action(semantics = SemanticsOf.IDEMPOTENT)
-    public SimpleObject updateName(
+    public Person updateName(
             @Parameter(maxLength = 40)
             @ParameterLayout(named = "Name")
             final String name) {
@@ -111,7 +111,7 @@ public class SimpleObject implements Comparable<SimpleObject> {
     }
 
     @Override
-    public int compareTo(final SimpleObject other) {
+    public int compareTo(final Person other) {
         return ObjectContracts.compare(this, other, "name");
     }
     //endregion

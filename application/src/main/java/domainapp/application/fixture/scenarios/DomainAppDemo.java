@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 
 import domainapp.application.fixture.teardown.DomainAppTearDown;
-import domainapp.modules.simple.fixture.scenario.CreateSimpleObjects;
+import domainapp.modules.persons.fixture.scenario.CreatePersons;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -42,7 +42,7 @@ public class DomainAppDemo extends FixtureScript {
 
         // execute
         ec.executeChild(this, new DomainAppTearDown());
-        ec.executeChild(this, new CreateSimpleObjects().setNumber(number));
+        ec.executeChild(this, new CreatePersons().setNumber(number));
 
     }
 }

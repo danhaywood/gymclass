@@ -27,8 +27,8 @@ import com.google.common.collect.Lists;
 
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 
-import domainapp.modules.persons.dom.impl.SimpleObject;
-import domainapp.modules.persons.dom.impl.SimpleObjectMenu;
+import domainapp.modules.persons.dom.impl.Person;
+import domainapp.modules.persons.dom.impl.PersonMenu;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -47,12 +47,12 @@ public class CreateSimpleObjects extends FixtureScript {
      * The objects created by this fixture (output).
      */
     @Getter
-    private final List<SimpleObject> simpleObjects = Lists.newArrayList();
+    private final List<Person> people = Lists.newArrayList();
 
     @Override
     protected void execute(final ExecutionContext ec) {
 
-        int max = SimpleObjectData.values().length;
+        int max = PersonData.values().length;
 
         // defaults
         final int number = defaultParam("number", ec, 3);
@@ -64,14 +64,14 @@ public class CreateSimpleObjects extends FixtureScript {
 
         // execute
         for (int i = 0; i < number; i++) {
-            final SimpleObjectData data = SimpleObjectData.values()[i];
-            final SimpleObject simpleObject =  data.createWith(wrap(simpleObjectMenu));
-            ec.addResult(this, simpleObject);
-            simpleObjects.add(simpleObject);
+            final PersonData data = PersonData.values()[i];
+            final Person person =  data.createWith(wrap(personMenu));
+            ec.addResult(this, person);
+            people.add(person);
         }
     }
 
     @javax.inject.Inject
-    SimpleObjectMenu simpleObjectMenu;
+    PersonMenu personMenu;
 
 }

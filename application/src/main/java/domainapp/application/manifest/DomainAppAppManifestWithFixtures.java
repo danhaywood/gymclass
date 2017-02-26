@@ -22,7 +22,7 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
-import domainapp.modules.simple.fixture.scenario.CreateSimpleObjects;
+import domainapp.modules.persons.fixture.scenario.CreatePersons;
 
 /**
  * Run the app but without setting up any fixtures.
@@ -34,7 +34,7 @@ public class DomainAppAppManifestWithFixtures extends DomainAppAppManifest {
     }
 
     public DomainAppAppManifestWithFixtures(final String authMechanism) {
-        super((List)Lists.newArrayList(CreateSimpleObjects.class), authMechanism, null);
+        super((List)Lists.newArrayList(CreatePersons.class), authMechanism, null);
     }
 
 }

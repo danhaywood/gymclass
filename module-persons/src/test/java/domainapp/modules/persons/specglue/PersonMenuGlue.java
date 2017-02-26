@@ -23,17 +23,17 @@ import org.apache.isis.core.specsupport.specs.CukeGlueAbstract;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
-import domainapp.modules.persons.dom.impl.SimpleObject;
-import domainapp.modules.persons.dom.impl.SimpleObjectMenu;
+import domainapp.modules.persons.dom.impl.Person;
+import domainapp.modules.persons.dom.impl.PersonMenu;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class SimpleObjectMenuGlue extends CukeGlueAbstract {
+public class PersonMenuGlue extends CukeGlueAbstract {
 
     @Given("^there are.* (\\d+) simple objects$")
     public void there_are_N_simple_objects(int n) throws Throwable {
         try {
-            final List<SimpleObject> list = simpleObjectMenu().listAll();
+            final List<Person> list = simpleObjectMenu().listAll();
             assertThat(list.size(), is(n));
             putVar("java.util.List", "simpleObjects", list);
         } finally {
@@ -46,8 +46,8 @@ public class SimpleObjectMenuGlue extends CukeGlueAbstract {
         simpleObjectMenu().create(UUID.randomUUID().toString());
     }
 
-    private SimpleObjectMenu simpleObjectMenu() {
-        return service(SimpleObjectMenu.class);
+    private PersonMenu simpleObjectMenu() {
+        return service(PersonMenu.class);
     }
 
 }
