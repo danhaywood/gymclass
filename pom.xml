@@ -334,12 +334,12 @@
             <!-- this project's own modules -->
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>gymclass-module-simple</artifactId>
+                <artifactId>gymclass-module-persons</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>gymclass-module-simple</artifactId>
+                <artifactId>gymclass-module-persons</artifactId>
                 <version>1.0-SNAPSHOT</version>
                 <type>test-jar</type>
             </dependency>

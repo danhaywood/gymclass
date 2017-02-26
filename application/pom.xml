@@ -100,11 +100,11 @@
         <!-- this app -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>gymclass-module-simple</artifactId>
+            <artifactId>gymclass-module-persons</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>gymclass-module-simple</artifactId>
+            <artifactId>gymclass-module-persons</artifactId>
             <type>test-jar</type>
             <scope>test</scope>
         </dependency>
