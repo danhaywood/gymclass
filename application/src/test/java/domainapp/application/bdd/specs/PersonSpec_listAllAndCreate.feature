@@ -15,12 +15,12 @@
 #  limitations under the License.
 #
 @DomainAppDemo
-Feature: List and Create New Simple Objects
+Feature: List and Create New Persons
 
   @integration
-  Scenario: Existing simple objects can be listed and new ones created
-    Given there are initially 3 simple objects
-    When  I create a new simple object
-    Then  there are 4 simple objects 
+  Scenario: Existing persons can be listed and new ones created
+    Given there are initially 3 persons
+    When  I create a new person
+    Then  there are 4 persons
 
     

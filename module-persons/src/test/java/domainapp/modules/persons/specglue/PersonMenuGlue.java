@@ -30,23 +30,23 @@ import static org.junit.Assert.assertThat;
 
 public class PersonMenuGlue extends CukeGlueAbstract {
 
-    @Given("^there are.* (\\d+) simple objects$")
-    public void there_are_N_simple_objects(int n) throws Throwable {
+    @Given("^there are.* (\\d+) persons$")
+    public void there_are_N_persons(int n) throws Throwable {
         try {
-            final List<Person> list = simpleObjectMenu().listAll();
+            final List<Person> list = personMenu().listAll();
             assertThat(list.size(), is(n));
-            putVar("java.util.List", "simpleObjects", list);
+            putVar("java.util.List", "persons", list);
         } finally {
             assertMocksSatisfied();
         }
     }
     
-    @When("^.*create a .*simple object$")
-    public void create_a_simple_object() throws Throwable {
-        simpleObjectMenu().create(UUID.randomUUID().toString());
+    @When("^.*create a .*person$")
+    public void create_a_person() throws Throwable {
+        personMenu().create(UUID.randomUUID().toString());
     }
 
-    private PersonMenu simpleObjectMenu() {
+    private PersonMenu personMenu() {
         return service(PersonMenu.class);
     }
 

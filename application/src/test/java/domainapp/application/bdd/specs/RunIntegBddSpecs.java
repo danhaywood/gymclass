@@ -33,7 +33,7 @@ import cucumber.api.junit.Cucumber;
         },
         glue={
                 "classpath:domainapp.application.bdd.specglue",
-                "classpath:domainapp.modules.simple.specglue"
+                "classpath:domainapp.modules.persons.specglue"
         },
         strict = true,
         tags = { "~@backlog", "~@ignore" })
