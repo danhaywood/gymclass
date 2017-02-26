@@ -16,7 +16,7 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package domainapp.modules.simple.integtests;
+package domainapp.modules.persons.integtests;
 
 import java.util.List;
 import java.util.Map;
@@ -35,7 +35,7 @@ import org.apache.isis.core.integtestsupport.IntegrationTestAbstract;
 import org.apache.isis.core.integtestsupport.IsisSystemForTest;
 import org.apache.isis.core.integtestsupport.scenarios.ScenarioExecutionForIntegration;
 
-import domainapp.modules.simple.SimpleModuleManifest;
+import domainapp.modules.persons.SimpleModuleManifest;
 
 public abstract class SimpleModuleIntegTestAbstract extends IntegrationTestAbstract {
 
