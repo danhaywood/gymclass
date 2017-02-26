@@ -111,11 +111,11 @@
 
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>gymclass-module-simple</artifactId>
+            <artifactId>gymclass-module-timetable</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>gymclass-module-simple</artifactId>
+            <artifactId>gymclass-module-timetable</artifactId>
             <type>test-jar</type>
             <scope>test</scope>
         </dependency>
