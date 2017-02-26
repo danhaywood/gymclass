@@ -33,7 +33,7 @@ import org.apache.isis.applib.services.eventbus.ActionDomainEvent;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,
-        objectType = "simple.SimpleObjectMenu",
+        objectType = "simple.PersonMenu",
         repositoryFor = Person.class
 )
 @DomainServiceLayout(
