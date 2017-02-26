@@ -18,6 +18,6 @@
  */
 package domainapp.modules.persons.fixture;
 
-public final class SimpleModuleFixtureSubmodule {
-    private SimpleModuleFixtureSubmodule(){}
+public final class PersonsModuleFixtureSubmodule {
+    private PersonsModuleFixtureSubmodule(){}
 }

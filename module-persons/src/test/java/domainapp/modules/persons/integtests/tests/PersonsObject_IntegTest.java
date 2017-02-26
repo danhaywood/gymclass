@@ -36,12 +36,12 @@ import org.apache.isis.core.metamodel.services.jdosupport.Persistable_datanucleu
 import domainapp.modules.persons.dom.impl.SimpleObject;
 import domainapp.modules.persons.fixture.scenario.CreateSimpleObjects;
 import domainapp.modules.persons.fixture.scenario.SimpleObjectData;
-import domainapp.modules.persons.fixture.teardown.SimpleModuleTearDown;
+import domainapp.modules.persons.fixture.teardown.PersonsModuleTearDown;
 import domainapp.modules.persons.dom.impl.SimpleObjectMenu;
-import domainapp.modules.persons.integtests.SimpleModuleIntegTestAbstract;
+import domainapp.modules.persons.integtests.PersonsModuleIntegTestAbstract;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
+public class PersonsObject_IntegTest extends PersonsModuleIntegTestAbstract {
 
     @Inject
     FixtureScripts fixtureScripts;
@@ -55,7 +55,7 @@ public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
     @Before
     public void setUp() throws Exception {
         // given
-        fixtureScripts.runFixtureScript(new SimpleModuleTearDown(), null);
+        fixtureScripts.runFixtureScript(new PersonsModuleTearDown(), null);
         CreateSimpleObjects fs = new CreateSimpleObjects().setNumber(1);
         fixtureScripts.runFixtureScript(fs, null);
         transactionService.nextTransaction();
@@ -65,7 +65,7 @@ public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
         assertThat(simpleObject).isNotNull();
     }
 
-    public static class Name extends SimpleObject_IntegTest {
+    public static class Name extends PersonsObject_IntegTest {
 
         @Test
         public void accessible() throws Exception {
@@ -87,7 +87,7 @@ public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
 
     }
 
-    public static class UpdateName extends SimpleObject_IntegTest {
+    public static class UpdateName extends PersonsObject_IntegTest {
 
         @Test
         public void can_be_updated_directly() throws Exception {
@@ -113,7 +113,7 @@ public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
     }
 
 
-    public static class Title extends SimpleObject_IntegTest {
+    public static class Title extends PersonsObject_IntegTest {
 
         @Inject
         TitleService titleService;
@@ -132,7 +132,7 @@ public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
         }
     }
 
-    public static class DataNucleusId extends SimpleObject_IntegTest {
+    public static class DataNucleusId extends PersonsObject_IntegTest {
 
         @Test
         public void should_be_populated() throws Exception {
@@ -144,7 +144,7 @@ public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
         }
     }
 
-    public static class DataNucleusVersionTimestamp extends SimpleObject_IntegTest {
+    public static class DataNucleusVersionTimestamp extends PersonsObject_IntegTest {
 
         @Test
         public void should_be_populated() throws Exception {
