@@ -34,7 +34,7 @@ import org.apache.isis.core.metamodel.services.jdosupport.Persistable_datanucleu
 import org.apache.isis.core.metamodel.services.jdosupport.Persistable_datanucleusVersionTimestamp;
 
 import domainapp.modules.persons.dom.impl.Person;
-import domainapp.modules.persons.fixture.scenario.CreateSimpleObjects;
+import domainapp.modules.persons.fixture.scenario.CreatePersons;
 import domainapp.modules.persons.fixture.scenario.PersonData;
 import domainapp.modules.persons.fixture.teardown.PersonsModuleTearDown;
 import domainapp.modules.persons.dom.impl.PersonMenu;
@@ -56,7 +56,7 @@ public class PersonsObject_IntegTest extends PersonsModuleIntegTestAbstract {
     public void setUp() throws Exception {
         // given
         fixtureScripts.runFixtureScript(new PersonsModuleTearDown(), null);
-        CreateSimpleObjects fs = new CreateSimpleObjects().setNumber(1);
+        CreatePersons fs = new CreatePersons().setNumber(1);
         fixtureScripts.runFixtureScript(fs, null);
         transactionService.nextTransaction();
 

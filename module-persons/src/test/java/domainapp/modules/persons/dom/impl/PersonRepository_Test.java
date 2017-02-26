@@ -37,7 +37,7 @@ import org.apache.isis.core.unittestsupport.jmocking.JUnitRuleMockery2.Mode;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SimpleObjectRepository_Test {
+public class PersonRepository_Test {
 
     @Rule
     public JUnitRuleMockery2 context = JUnitRuleMockery2.createFor(Mode.INTERFACES_AND_CLASSES);
@@ -57,7 +57,7 @@ public class SimpleObjectRepository_Test {
         personRepository.serviceRegistry = mockServiceRegistry;
     }
 
-    public static class Create extends SimpleObjectRepository_Test {
+    public static class Create extends PersonRepository_Test {
 
         @Test
         public void happyCase() throws Exception {
@@ -100,7 +100,7 @@ public class SimpleObjectRepository_Test {
         }
     }
 
-    public static class ListAll extends SimpleObjectRepository_Test {
+    public static class ListAll extends PersonRepository_Test {
 
         @Test
         public void happyCase() throws Exception {

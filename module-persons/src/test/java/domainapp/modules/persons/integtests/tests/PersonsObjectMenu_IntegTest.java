@@ -35,7 +35,7 @@ import org.apache.isis.applib.fixturescripts.FixtureScripts;
 import org.apache.isis.applib.services.xactn.TransactionService;
 
 import domainapp.modules.persons.dom.impl.Person;
-import domainapp.modules.persons.fixture.scenario.CreateSimpleObjects;
+import domainapp.modules.persons.fixture.scenario.CreatePersons;
 import domainapp.modules.persons.fixture.teardown.PersonsModuleTearDown;
 import domainapp.modules.persons.dom.impl.PersonMenu;
 import domainapp.modules.persons.integtests.PersonsModuleIntegTestAbstract;
@@ -57,7 +57,7 @@ public class PersonsObjectMenu_IntegTest extends PersonsModuleIntegTestAbstract 
 
             // given
             fixtureScripts.runFixtureScript(new PersonsModuleTearDown(), null);
-            CreateSimpleObjects fs = new CreateSimpleObjects();
+            CreatePersons fs = new CreatePersons();
             fixtureScripts.runFixtureScript(fs, null);
             transactionService.nextTransaction();
 
