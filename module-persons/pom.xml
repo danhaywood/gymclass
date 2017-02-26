@@ -26,7 +26,7 @@
     </parent>
 
     <artifactId>gymclass-module-persons</artifactId>
-    <name>SimpleApp Persons Module</name>
+    <name>GymClass Persons Module</name>
 
     <properties>
         <isis-maven-plugin.validate.appManifest>domainapp.modules.persons.PersonsModuleManifest</isis-maven-plugin.validate.appManifest>

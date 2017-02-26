@@ -23,7 +23,7 @@
     <artifactId>gymclass</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>SimpleApp Parent</name>
+    <name>GymClass Parent</name>
 
     <packaging>pom</packaging>
 
