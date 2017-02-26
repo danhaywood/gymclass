@@ -26,19 +26,19 @@ import java.util.Map;
 import org.apache.isis.applib.AppManifest;
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 
-import domainapp.modules.timetable.dom.SimpleModuleDomSubmodule;
-import domainapp.modules.timetable.fixture.SimpleModuleFixtureSubmodule;
+import domainapp.modules.timetable.dom.TimeTableModuleDomSubmodule;
+import domainapp.modules.timetable.fixture.TimeTableModuleFixtureSubmodule;
 
 /**
  * Used by <code>isis-maven-plugin</code> (build-time validation of the module) and also by module-level integration tests.
  */
-public class SimpleModuleManifest implements AppManifest {
+public class TimeTableModuleManifest implements AppManifest {
 
     @Override
     public List<Class<?>> getModules() {
         return Arrays.<Class<?>>asList(
-                SimpleModuleDomSubmodule.class,
-                SimpleModuleFixtureSubmodule.class
+                TimeTableModuleDomSubmodule.class,
+                TimeTableModuleFixtureSubmodule.class
         );
     }
 

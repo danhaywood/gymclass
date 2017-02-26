@@ -35,9 +35,9 @@ import org.apache.isis.core.integtestsupport.IntegrationTestAbstract;
 import org.apache.isis.core.integtestsupport.IsisSystemForTest;
 import org.apache.isis.core.integtestsupport.scenarios.ScenarioExecutionForIntegration;
 
-import domainapp.modules.timetable.SimpleModuleManifest;
+import domainapp.modules.timetable.TimeTableModuleManifest;
 
-public abstract class SimpleModuleIntegTestAbstract extends IntegrationTestAbstract {
+public abstract class TimeTableModuleIntegTestAbstract extends IntegrationTestAbstract {
 
     @BeforeClass
     public static void initSystem() {
@@ -46,7 +46,7 @@ public abstract class SimpleModuleIntegTestAbstract extends IntegrationTestAbstr
         if(isft == null) {
             isft = new IsisSystemForTest.Builder()
                     .withLoggingAt(org.apache.log4j.Level.INFO)
-                    .with(new SimpleModuleManifest() {
+                    .with(new TimeTableModuleManifest() {
                         @Override
                         public Map<String, String> getConfigurationProperties() {
                             final Map<String, String> map = Maps.newHashMap();

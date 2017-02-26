@@ -37,11 +37,11 @@ import org.apache.isis.applib.services.xactn.TransactionService;
 import domainapp.modules.timetable.dom.impl.SimpleObject;
 import domainapp.modules.timetable.dom.impl.SimpleObjectMenu;
 import domainapp.modules.timetable.fixture.scenario.CreateSimpleObjects;
-import domainapp.modules.timetable.fixture.teardown.SimpleModuleTearDown;
-import domainapp.modules.timetable.integtests.SimpleModuleIntegTestAbstract;
+import domainapp.modules.timetable.fixture.teardown.TimeTableModuleTearDown;
+import domainapp.modules.timetable.integtests.TimeTableModuleIntegTestAbstract;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SimpleObjectMenu_IntegTest extends SimpleModuleIntegTestAbstract {
+public class TimeTableObjectMenu_IntegTest extends TimeTableModuleIntegTestAbstract {
 
     @Inject
     FixtureScripts fixtureScripts;
@@ -50,13 +50,13 @@ public class SimpleObjectMenu_IntegTest extends SimpleModuleIntegTestAbstract {
     @Inject
     SimpleObjectMenu menu;
 
-    public static class ListAll extends SimpleObjectMenu_IntegTest {
+    public static class ListAll extends TimeTableObjectMenu_IntegTest {
 
         @Test
         public void happyCase() throws Exception {
 
             // given
-            fixtureScripts.runFixtureScript(new SimpleModuleTearDown(), null);
+            fixtureScripts.runFixtureScript(new TimeTableModuleTearDown(), null);
             CreateSimpleObjects fs = new CreateSimpleObjects();
             fixtureScripts.runFixtureScript(fs, null);
             transactionService.nextTransaction();
@@ -75,7 +75,7 @@ public class SimpleObjectMenu_IntegTest extends SimpleModuleIntegTestAbstract {
         public void whenNone() throws Exception {
 
             // given
-            FixtureScript fs = new SimpleModuleTearDown();
+            FixtureScript fs = new TimeTableModuleTearDown();
             fixtureScripts.runFixtureScript(fs, null);
             transactionService.nextTransaction();
 
@@ -87,13 +87,13 @@ public class SimpleObjectMenu_IntegTest extends SimpleModuleIntegTestAbstract {
         }
     }
 
-    public static class Create extends SimpleObjectMenu_IntegTest {
+    public static class Create extends TimeTableObjectMenu_IntegTest {
 
         @Test
         public void happyCase() throws Exception {
 
             // given
-            FixtureScript fs = new SimpleModuleTearDown();
+            FixtureScript fs = new TimeTableModuleTearDown();
             fixtureScripts.runFixtureScript(fs, null);
             transactionService.nextTransaction();
 
@@ -109,7 +109,7 @@ public class SimpleObjectMenu_IntegTest extends SimpleModuleIntegTestAbstract {
         public void whenAlreadyExists() throws Exception {
 
             // given
-            FixtureScript fs = new SimpleModuleTearDown();
+            FixtureScript fs = new TimeTableModuleTearDown();
             fixtureScripts.runFixtureScript(fs, null);
             transactionService.nextTransaction();
             wrap(menu).create("Faz");

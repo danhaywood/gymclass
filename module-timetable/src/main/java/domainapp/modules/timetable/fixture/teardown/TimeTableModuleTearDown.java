@@ -22,7 +22,7 @@ package domainapp.modules.timetable.fixture.teardown;
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 import org.apache.isis.applib.services.jdosupport.IsisJdoSupport;
 
-public class SimpleModuleTearDown extends FixtureScript {
+public class TimeTableModuleTearDown extends FixtureScript {
 
     @Override
     protected void execute(ExecutionContext executionContext) {
