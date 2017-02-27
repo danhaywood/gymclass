@@ -85,7 +85,7 @@
                 <module>module-timetable</module>
                 <module>module-customers</module>
                 <module>module-employees</module>
-                <module>module-simple</module>
+                <module>module-classes</module>
             </modules>
         </profile>
     </profiles>
