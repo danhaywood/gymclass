@@ -33,10 +33,10 @@ import org.apache.isis.applib.services.xactn.TransactionService;
 import org.apache.isis.core.metamodel.services.jdosupport.Persistable_datanucleusIdLong;
 import org.apache.isis.core.metamodel.services.jdosupport.Persistable_datanucleusVersionTimestamp;
 
-import domainapp.modules.classes.dom.impl.SimpleObject;
-import domainapp.modules.classes.dom.impl.SimpleObjectMenu;
-import domainapp.modules.classes.fixture.scenario.CreateSimpleObjects;
-import domainapp.modules.classes.fixture.scenario.SimpleObjectData;
+import domainapp.modules.classes.dom.impl.ScheduledGymClass;
+import domainapp.modules.classes.dom.impl.ScheduledGymClassMenu;
+import domainapp.modules.classes.fixture.scenario.CreateScheduledGymClasses;
+import domainapp.modules.classes.fixture.scenario.ScheduledGymClassData;
 import domainapp.modules.classes.fixture.teardown.ClassesModuleTearDown;
 import domainapp.modules.classes.integtests.ClassesModuleIntegTestAbstract;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -46,23 +46,23 @@ public class ClassesObject_IntegTest extends ClassesModuleIntegTestAbstract {
     @Inject
     FixtureScripts fixtureScripts;
     @Inject
-    SimpleObjectMenu simpleObjectMenu;
+    ScheduledGymClassMenu scheduledGymClassMenu;
     @Inject
     TransactionService transactionService;
 
-    SimpleObject simpleObject;
+    ScheduledGymClass scheduledGymClass;
 
     @Before
     public void setUp() throws Exception {
         // given
         fixtureScripts.runFixtureScript(new ClassesModuleTearDown(), null);
-        CreateSimpleObjects fs = new CreateSimpleObjects().setNumber(1);
+        CreateScheduledGymClasses fs = new CreateScheduledGymClasses().setNumber(1);
         fixtureScripts.runFixtureScript(fs, null);
         transactionService.nextTransaction();
 
-        simpleObject = SimpleObjectData.FOO.findWith(wrap(simpleObjectMenu));
+        scheduledGymClass = ScheduledGymClassData.FOO.findWith(wrap(scheduledGymClassMenu));
 
-        assertThat(simpleObject).isNotNull();
+        assertThat(scheduledGymClass).isNotNull();
     }
 
     public static class Name extends ClassesObject_IntegTest {
@@ -70,10 +70,10 @@ public class ClassesObject_IntegTest extends ClassesModuleIntegTestAbstract {
         @Test
         public void accessible() throws Exception {
             // when
-            final String name = wrap(simpleObject).getName();
+            final String name = wrap(scheduledGymClass).getName();
 
             // then
-            assertThat(name).isEqualTo(simpleObject.getName());
+            assertThat(name).isEqualTo(scheduledGymClass.getName());
         }
 
         @Test
@@ -82,7 +82,7 @@ public class ClassesObject_IntegTest extends ClassesModuleIntegTestAbstract {
             expectedExceptions.expect(DisabledException.class);
 
             // when
-            wrap(simpleObject).setName("new name");
+            wrap(scheduledGymClass).setName("new name");
         }
 
     }
@@ -93,11 +93,11 @@ public class ClassesObject_IntegTest extends ClassesModuleIntegTestAbstract {
         public void can_be_updated_directly() throws Exception {
 
             // when
-            wrap(simpleObject).updateName("new name");
+            wrap(scheduledGymClass).updateName("new name");
             transactionService.nextTransaction();
 
             // then
-            assertThat(wrap(simpleObject).getName()).isEqualTo("new name");
+            assertThat(wrap(scheduledGymClass).getName()).isEqualTo("new name");
         }
 
         @Test
@@ -108,7 +108,7 @@ public class ClassesObject_IntegTest extends ClassesModuleIntegTestAbstract {
             expectedExceptions.expectMessage("Exclamation mark is not allowed");
 
             // when
-            wrap(simpleObject).updateName("new name!");
+            wrap(scheduledGymClass).updateName("new name!");
         }
     }
 
@@ -122,10 +122,10 @@ public class ClassesObject_IntegTest extends ClassesModuleIntegTestAbstract {
         public void interpolatesName() throws Exception {
 
             // given
-            final String name = wrap(simpleObject).getName();
+            final String name = wrap(scheduledGymClass).getName();
 
             // when
-            final String title = titleService.titleOf(simpleObject);
+            final String title = titleService.titleOf(scheduledGymClass);
 
             // then
             assertThat(title).isEqualTo("Object: " + name);
@@ -137,7 +137,7 @@ public class ClassesObject_IntegTest extends ClassesModuleIntegTestAbstract {
         @Test
         public void should_be_populated() throws Exception {
             // when
-            final Long id = mixin(Persistable_datanucleusIdLong.class, simpleObject).exec();
+            final Long id = mixin(Persistable_datanucleusIdLong.class, scheduledGymClass).exec();
 
             // then
             assertThat(id).isGreaterThanOrEqualTo(0);
@@ -149,7 +149,7 @@ public class ClassesObject_IntegTest extends ClassesModuleIntegTestAbstract {
         @Test
         public void should_be_populated() throws Exception {
             // when
-            final Timestamp timestamp = mixin(Persistable_datanucleusVersionTimestamp.class, simpleObject).exec();
+            final Timestamp timestamp = mixin(Persistable_datanucleusVersionTimestamp.class, scheduledGymClass).exec();
             // then
             assertThat(timestamp).isNotNull();
         }

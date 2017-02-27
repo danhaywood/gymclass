@@ -26,7 +26,7 @@ public class ClassesModuleTearDown extends FixtureScript {
 
     @Override
     protected void execute(ExecutionContext executionContext) {
-        isisJdoSupport.executeUpdate("delete from \"classes\".\"SimpleObject\"");
+        isisJdoSupport.executeUpdate("delete from \"classes\".\"ScheduledGymClass\"");
     }
 
 

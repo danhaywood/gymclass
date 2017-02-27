@@ -33,45 +33,45 @@ import org.apache.isis.applib.services.eventbus.ActionDomainEvent;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,
-        objectType = "classes.SimpleObjectMenu",
-        repositoryFor = SimpleObject.class
+        objectType = "classes.ScheduledGymClassMenu",
+        repositoryFor = ScheduledGymClass.class
 )
 @DomainServiceLayout(
-        named = "Simple Objects",
+        named = "Scheduled Gym Classes",
         menuOrder = "10"
 )
-public class SimpleObjectMenu {
+public class ScheduledGymClassMenu {
 
     @Action(semantics = SemanticsOf.SAFE)
     @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT)
     @MemberOrder(sequence = "1")
-    public List<SimpleObject> listAll() {
-        return simpleObjectRepository.listAll();
+    public List<ScheduledGymClass> listAll() {
+        return scheduledGymClassRepository.listAll();
     }
 
 
     @Action(semantics = SemanticsOf.SAFE)
     @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT)
     @MemberOrder(sequence = "2")
-    public List<SimpleObject> findByName(
+    public List<ScheduledGymClass> findByName(
             @ParameterLayout(named="Name")
             final String name
     ) {
-        return simpleObjectRepository.findByName(name);
+        return scheduledGymClassRepository.findByName(name);
     }
 
 
-    public static class CreateDomainEvent extends ActionDomainEvent<SimpleObjectMenu> {}
+    public static class CreateDomainEvent extends ActionDomainEvent<ScheduledGymClassMenu> {}
     @Action(domainEvent = CreateDomainEvent.class)
     @MemberOrder(sequence = "3")
-    public SimpleObject create(
+    public ScheduledGymClass create(
             @ParameterLayout(named="Name")
             final String name) {
-        return simpleObjectRepository.create(name);
+        return scheduledGymClassRepository.create(name);
     }
 
 
     @javax.inject.Inject
-    SimpleObjectRepository simpleObjectRepository;
+    ScheduledGymClassRepository scheduledGymClassRepository;
 
 }

@@ -19,12 +19,12 @@
 
 package domainapp.modules.classes.fixture.scenario;
 
-import domainapp.modules.classes.dom.impl.SimpleObject;
-import domainapp.modules.classes.dom.impl.SimpleObjectMenu;
+import domainapp.modules.classes.dom.impl.ScheduledGymClass;
+import domainapp.modules.classes.dom.impl.ScheduledGymClassMenu;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public enum SimpleObjectData {
+public enum ScheduledGymClassData {
 
     FOO("Foo"),
     BAR("Bar"),
@@ -39,11 +39,11 @@ public enum SimpleObjectData {
 
     private final String name;
 
-    public SimpleObject createWith(final SimpleObjectMenu menu) {
+    public ScheduledGymClass createWith(final ScheduledGymClassMenu menu) {
         return menu.create(name);
     }
 
-    public SimpleObject findWith(final SimpleObjectMenu menu) {
+    public ScheduledGymClass findWith(final ScheduledGymClassMenu menu) {
         return menu.findByName(name).get(0);
     }
 }
