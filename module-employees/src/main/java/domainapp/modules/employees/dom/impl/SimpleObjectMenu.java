@@ -16,7 +16,7 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package domainapp.modules.simple.dom.impl;
+package domainapp.modules.employees.dom.impl;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ import org.apache.isis.applib.services.eventbus.ActionDomainEvent;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,
-        objectType = "simple.SimpleObjectMenu",
+        objectType = "employees.SimpleObjectMenu",
         repositoryFor = SimpleObject.class
 )
 @DomainServiceLayout(

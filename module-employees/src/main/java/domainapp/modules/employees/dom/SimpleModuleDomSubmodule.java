@@ -16,21 +16,15 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
+package domainapp.modules.employees.dom;
 
-package domainapp.modules.simple.fixture.teardown;
+public final class SimpleModuleDomSubmodule {
+    private SimpleModuleDomSubmodule(){}
 
-import org.apache.isis.applib.fixturescripts.FixtureScript;
-import org.apache.isis.applib.services.jdosupport.IsisJdoSupport;
-
-public class SimpleModuleTearDown extends FixtureScript {
-
-    @Override
-    protected void execute(ExecutionContext executionContext) {
-        isisJdoSupport.executeUpdate("delete from \"simple\".\"SimpleObject\"");
-    }
-
-
-    @javax.inject.Inject
-    private IsisJdoSupport isisJdoSupport;
-
+    public static class PropertyDomainEvent<S,T>
+            extends org.apache.isis.applib.services.eventbus.PropertyDomainEvent<S,T> {}
+    public static class CollectionDomainEvent<S,T>
+            extends org.apache.isis.applib.services.eventbus.CollectionDomainEvent<S,T> {}
+    public static class ActionDomainEvent<S> extends
+            org.apache.isis.applib.services.eventbus.ActionDomainEvent<S> {}
 }

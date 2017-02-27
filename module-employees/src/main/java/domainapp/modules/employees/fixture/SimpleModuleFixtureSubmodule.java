@@ -16,7 +16,7 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package domainapp.modules.simple.fixture;
+package domainapp.modules.employees.fixture;
 
 public final class SimpleModuleFixtureSubmodule {
     private SimpleModuleFixtureSubmodule(){}

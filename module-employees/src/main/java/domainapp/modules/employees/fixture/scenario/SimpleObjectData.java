@@ -17,10 +17,10 @@
  *  under the License.
  */
 
-package domainapp.modules.simple.fixture.scenario;
+package domainapp.modules.employees.fixture.scenario;
 
-import domainapp.modules.simple.dom.impl.SimpleObject;
-import domainapp.modules.simple.dom.impl.SimpleObjectMenu;
+import domainapp.modules.employees.dom.impl.SimpleObject;
+import domainapp.modules.employees.dom.impl.SimpleObjectMenu;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
