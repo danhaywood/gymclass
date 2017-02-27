@@ -424,7 +424,7 @@
     <module>module-persons</module>
     <module>module-timetable</module>
     <module>module-customers</module>
-    <module>module-simple</module>
+    <module>module-employees</module>
     <module>application</module>
     <module>webapp</module>
   </modules>
