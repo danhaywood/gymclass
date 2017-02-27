@@ -37,11 +37,11 @@ import org.apache.isis.applib.services.xactn.TransactionService;
 import domainapp.modules.employees.dom.impl.SimpleObject;
 import domainapp.modules.employees.dom.impl.SimpleObjectMenu;
 import domainapp.modules.employees.fixture.scenario.CreateSimpleObjects;
-import domainapp.modules.employees.fixture.teardown.SimpleModuleTearDown;
-import domainapp.modules.employees.integtests.SimpleModuleIntegTestAbstract;
+import domainapp.modules.employees.fixture.teardown.EmployeesModuleTearDown;
+import domainapp.modules.employees.integtests.EmployeesModuleIntegTestAbstract;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SimpleObjectMenu_IntegTest extends SimpleModuleIntegTestAbstract {
+public class SimpleObjectMenu_IntegTest extends EmployeesModuleIntegTestAbstract {
 
     @Inject
     FixtureScripts fixtureScripts;
@@ -56,7 +56,7 @@ public class SimpleObjectMenu_IntegTest extends SimpleModuleIntegTestAbstract {
         public void happyCase() throws Exception {
 
             // given
-            fixtureScripts.runFixtureScript(new SimpleModuleTearDown(), null);
+            fixtureScripts.runFixtureScript(new EmployeesModuleTearDown(), null);
             CreateSimpleObjects fs = new CreateSimpleObjects();
             fixtureScripts.runFixtureScript(fs, null);
             transactionService.nextTransaction();
@@ -75,7 +75,7 @@ public class SimpleObjectMenu_IntegTest extends SimpleModuleIntegTestAbstract {
         public void whenNone() throws Exception {
 
             // given
-            FixtureScript fs = new SimpleModuleTearDown();
+            FixtureScript fs = new EmployeesModuleTearDown();
             fixtureScripts.runFixtureScript(fs, null);
             transactionService.nextTransaction();
 
@@ -93,7 +93,7 @@ public class SimpleObjectMenu_IntegTest extends SimpleModuleIntegTestAbstract {
         public void happyCase() throws Exception {
 
             // given
-            FixtureScript fs = new SimpleModuleTearDown();
+            FixtureScript fs = new EmployeesModuleTearDown();
             fixtureScripts.runFixtureScript(fs, null);
             transactionService.nextTransaction();
 
@@ -109,7 +109,7 @@ public class SimpleObjectMenu_IntegTest extends SimpleModuleIntegTestAbstract {
         public void whenAlreadyExists() throws Exception {
 
             // given
-            FixtureScript fs = new SimpleModuleTearDown();
+            FixtureScript fs = new EmployeesModuleTearDown();
             fixtureScripts.runFixtureScript(fs, null);
             transactionService.nextTransaction();
             wrap(menu).create("Faz");

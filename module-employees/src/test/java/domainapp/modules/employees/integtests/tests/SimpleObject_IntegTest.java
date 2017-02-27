@@ -37,11 +37,11 @@ import domainapp.modules.employees.dom.impl.SimpleObject;
 import domainapp.modules.employees.dom.impl.SimpleObjectMenu;
 import domainapp.modules.employees.fixture.scenario.CreateSimpleObjects;
 import domainapp.modules.employees.fixture.scenario.SimpleObjectData;
-import domainapp.modules.employees.fixture.teardown.SimpleModuleTearDown;
-import domainapp.modules.employees.integtests.SimpleModuleIntegTestAbstract;
+import domainapp.modules.employees.fixture.teardown.EmployeesModuleTearDown;
+import domainapp.modules.employees.integtests.EmployeesModuleIntegTestAbstract;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
+public class SimpleObject_IntegTest extends EmployeesModuleIntegTestAbstract {
 
     @Inject
     FixtureScripts fixtureScripts;
@@ -55,7 +55,7 @@ public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
     @Before
     public void setUp() throws Exception {
         // given
-        fixtureScripts.runFixtureScript(new SimpleModuleTearDown(), null);
+        fixtureScripts.runFixtureScript(new EmployeesModuleTearDown(), null);
         CreateSimpleObjects fs = new CreateSimpleObjects().setNumber(1);
         fixtureScripts.runFixtureScript(fs, null);
         transactionService.nextTransaction();

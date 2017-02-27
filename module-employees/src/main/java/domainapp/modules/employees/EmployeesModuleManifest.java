@@ -26,19 +26,19 @@ import java.util.Map;
 import org.apache.isis.applib.AppManifest;
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 
-import domainapp.modules.employees.dom.SimpleModuleDomSubmodule;
-import domainapp.modules.employees.fixture.SimpleModuleFixtureSubmodule;
+import domainapp.modules.employees.dom.EmployeesModuleDomSubmodule;
+import domainapp.modules.employees.fixture.EmployeesModuleFixtureSubmodule;
 
 /**
  * Used by <code>isis-maven-plugin</code> (build-time validation of the module) and also by module-level integration tests.
  */
-public class SimpleModuleManifest implements AppManifest {
+public class EmployeesModuleManifest implements AppManifest {
 
     @Override
     public List<Class<?>> getModules() {
         return Arrays.<Class<?>>asList(
-                SimpleModuleDomSubmodule.class,
-                SimpleModuleFixtureSubmodule.class
+                EmployeesModuleDomSubmodule.class,
+                EmployeesModuleFixtureSubmodule.class
         );
     }
 
