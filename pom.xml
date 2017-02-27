@@ -378,12 +378,12 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>gymclass-module-simple</artifactId>
+                <artifactId>gymclass-module-classes</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>gymclass-module-simple</artifactId>
+                <artifactId>gymclass-module-classes</artifactId>
                 <version>1.0-SNAPSHOT</version>
                 <type>test-jar</type>
             </dependency>
