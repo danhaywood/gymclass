@@ -25,8 +25,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>gymclass-module-simple</artifactId>
-    <name>GymClass Simple Module</name>
+    <artifactId>gymclass-module-employees</artifactId>
+    <name>GymClass Employees Module</name>
 
     <properties>
         <isis-maven-plugin.validate.appManifest>domainapp.modules.simple.SimpleModuleManifest</isis-maven-plugin.validate.appManifest>
