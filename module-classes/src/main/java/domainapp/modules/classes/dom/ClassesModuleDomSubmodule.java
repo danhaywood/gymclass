@@ -18,8 +18,8 @@
  */
 package domainapp.modules.classes.dom;
 
-public final class SimpleModuleDomSubmodule {
-    private SimpleModuleDomSubmodule(){}
+public final class ClassesModuleDomSubmodule {
+    private ClassesModuleDomSubmodule(){}
 
     public static class PropertyDomainEvent<S,T>
             extends org.apache.isis.applib.services.eventbus.PropertyDomainEvent<S,T> {}

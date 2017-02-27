@@ -37,11 +37,11 @@ import domainapp.modules.classes.dom.impl.SimpleObject;
 import domainapp.modules.classes.dom.impl.SimpleObjectMenu;
 import domainapp.modules.classes.fixture.scenario.CreateSimpleObjects;
 import domainapp.modules.classes.fixture.scenario.SimpleObjectData;
-import domainapp.modules.classes.fixture.teardown.SimpleModuleTearDown;
-import domainapp.modules.classes.integtests.SimpleModuleIntegTestAbstract;
+import domainapp.modules.classes.fixture.teardown.ClassesModuleTearDown;
+import domainapp.modules.classes.integtests.ClassesModuleIntegTestAbstract;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
+public class ClassesObject_IntegTest extends ClassesModuleIntegTestAbstract {
 
     @Inject
     FixtureScripts fixtureScripts;
@@ -55,7 +55,7 @@ public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
     @Before
     public void setUp() throws Exception {
         // given
-        fixtureScripts.runFixtureScript(new SimpleModuleTearDown(), null);
+        fixtureScripts.runFixtureScript(new ClassesModuleTearDown(), null);
         CreateSimpleObjects fs = new CreateSimpleObjects().setNumber(1);
         fixtureScripts.runFixtureScript(fs, null);
         transactionService.nextTransaction();
@@ -65,7 +65,7 @@ public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
         assertThat(simpleObject).isNotNull();
     }
 
-    public static class Name extends SimpleObject_IntegTest {
+    public static class Name extends ClassesObject_IntegTest {
 
         @Test
         public void accessible() throws Exception {
@@ -87,7 +87,7 @@ public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
 
     }
 
-    public static class UpdateName extends SimpleObject_IntegTest {
+    public static class UpdateName extends ClassesObject_IntegTest {
 
         @Test
         public void can_be_updated_directly() throws Exception {
@@ -113,7 +113,7 @@ public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
     }
 
 
-    public static class Title extends SimpleObject_IntegTest {
+    public static class Title extends ClassesObject_IntegTest {
 
         @Inject
         TitleService titleService;
@@ -132,7 +132,7 @@ public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
         }
     }
 
-    public static class DataNucleusId extends SimpleObject_IntegTest {
+    public static class DataNucleusId extends ClassesObject_IntegTest {
 
         @Test
         public void should_be_populated() throws Exception {
@@ -144,7 +144,7 @@ public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
         }
     }
 
-    public static class DataNucleusVersionTimestamp extends SimpleObject_IntegTest {
+    public static class DataNucleusVersionTimestamp extends ClassesObject_IntegTest {
 
         @Test
         public void should_be_populated() throws Exception {
