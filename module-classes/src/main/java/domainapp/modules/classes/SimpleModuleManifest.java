@@ -16,7 +16,7 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package domainapp.modules.simple;
+package domainapp.modules.classes;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -26,8 +26,8 @@ import java.util.Map;
 import org.apache.isis.applib.AppManifest;
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 
-import domainapp.modules.simple.dom.SimpleModuleDomSubmodule;
-import domainapp.modules.simple.fixture.SimpleModuleFixtureSubmodule;
+import domainapp.modules.classes.dom.SimpleModuleDomSubmodule;
+import domainapp.modules.classes.fixture.SimpleModuleFixtureSubmodule;
 
 /**
  * Used by <code>isis-maven-plugin</code> (build-time validation of the module) and also by module-level integration tests.

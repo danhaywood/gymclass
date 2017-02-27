@@ -14,7 +14,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package domainapp.modules.simple.specglue;
+package domainapp.modules.classes.specglue;
 
 import java.util.List;
 import java.util.UUID;
@@ -23,14 +23,14 @@ import org.apache.isis.core.specsupport.specs.CukeGlueAbstract;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
-import domainapp.modules.simple.dom.impl.SimpleObject;
-import domainapp.modules.simple.dom.impl.SimpleObjectMenu;
+import domainapp.modules.classes.dom.impl.SimpleObject;
+import domainapp.modules.classes.dom.impl.SimpleObjectMenu;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class SimpleObjectMenuGlue extends CukeGlueAbstract {
 
-    @Given("^there are.* (\\d+) simple objects$")
+    @Given("^there are.* (\\d+) classes objects$")
     public void there_are_N_simple_objects(int n) throws Throwable {
         try {
             final List<SimpleObject> list = simpleObjectMenu().listAll();
@@ -41,7 +41,7 @@ public class SimpleObjectMenuGlue extends CukeGlueAbstract {
         }
     }
     
-    @When("^.*create a .*simple object$")
+    @When("^.*create a .*classes object$")
     public void create_a_simple_object() throws Throwable {
         simpleObjectMenu().create(UUID.randomUUID().toString());
     }

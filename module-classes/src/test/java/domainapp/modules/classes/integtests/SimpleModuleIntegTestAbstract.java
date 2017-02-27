@@ -16,7 +16,7 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package domainapp.modules.simple.integtests;
+package domainapp.modules.classes.integtests;
 
 import java.util.List;
 import java.util.Map;
@@ -35,7 +35,7 @@ import org.apache.isis.core.integtestsupport.IntegrationTestAbstract;
 import org.apache.isis.core.integtestsupport.IsisSystemForTest;
 import org.apache.isis.core.integtestsupport.scenarios.ScenarioExecutionForIntegration;
 
-import domainapp.modules.simple.SimpleModuleManifest;
+import domainapp.modules.classes.SimpleModuleManifest;
 
 public abstract class SimpleModuleIntegTestAbstract extends IntegrationTestAbstract {
 
@@ -76,7 +76,7 @@ public abstract class SimpleModuleIntegTestAbstract extends IntegrationTestAbstr
     public static class ModuleFixtureScriptsSpecificationProvider implements FixtureScriptsSpecificationProvider {
         @Override
         public FixtureScriptsSpecification getSpecification() {
-            return FixtureScriptsSpecification.builder("domainapp.modules.simple").with(
+            return FixtureScriptsSpecification.builder("domainapp.modules.classes").with(
                     FixtureScripts.MultipleExecutionStrategy.EXECUTE_ONCE_BY_VALUE).build();
         }
     }

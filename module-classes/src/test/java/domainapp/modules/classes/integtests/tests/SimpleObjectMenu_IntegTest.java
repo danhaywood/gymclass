@@ -16,7 +16,7 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package domainapp.modules.simple.integtests.tests;
+package domainapp.modules.classes.integtests.tests;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
@@ -34,11 +34,11 @@ import org.apache.isis.applib.fixturescripts.FixtureScript;
 import org.apache.isis.applib.fixturescripts.FixtureScripts;
 import org.apache.isis.applib.services.xactn.TransactionService;
 
-import domainapp.modules.simple.dom.impl.SimpleObject;
-import domainapp.modules.simple.dom.impl.SimpleObjectMenu;
-import domainapp.modules.simple.fixture.scenario.CreateSimpleObjects;
-import domainapp.modules.simple.fixture.teardown.SimpleModuleTearDown;
-import domainapp.modules.simple.integtests.SimpleModuleIntegTestAbstract;
+import domainapp.modules.classes.dom.impl.SimpleObject;
+import domainapp.modules.classes.dom.impl.SimpleObjectMenu;
+import domainapp.modules.classes.fixture.scenario.CreateSimpleObjects;
+import domainapp.modules.classes.fixture.teardown.SimpleModuleTearDown;
+import domainapp.modules.classes.integtests.SimpleModuleIntegTestAbstract;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SimpleObjectMenu_IntegTest extends SimpleModuleIntegTestAbstract {

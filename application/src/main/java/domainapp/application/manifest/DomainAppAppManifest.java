@@ -38,7 +38,7 @@ import domainapp.modules.persons.dom.PersonsModuleDomSubmodule;
 import domainapp.modules.timetable.dom.TimeTableModuleDomSubmodule;
 import domainapp.modules.customers.dom.CustomersModuleDomSubmodule;
 import domainapp.modules.employees.dom.EmployeesModuleDomSubmodule;
-import domainapp.modules.simple.dom.SimpleModuleDomSubmodule;
+import domainapp.modules.classes.dom.SimpleModuleDomSubmodule;
 
 /**
  * Bootstrap the application.
