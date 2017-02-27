@@ -52,14 +52,14 @@ import lombok.Setter;
         @javax.jdo.annotations.Query(
                 name = "findByName",
                 value = "SELECT "
-                        + "FROM domainapp.modules.employees.dom.impl.SimpleObject "
+                        + "FROM domainapp.modules.employees.dom.impl.GymInstructor "
                         + "WHERE name.indexOf(:name) >= 0 ")
 })
-@javax.jdo.annotations.Unique(name="SimpleObject_name_UNQ", members = {"name"})
+@javax.jdo.annotations.Unique(name="GymInstructor_name_UNQ", members = {"name"})
 @DomainObject() // objectType inferred from @PersistenceCapable#schema
-public class SimpleObject implements Comparable<SimpleObject> {
+public class GymInstructor implements Comparable<GymInstructor> {
 
-    public SimpleObject(final String name) {
+    public GymInstructor(final String name) {
         setName(name);
     }
 
@@ -77,7 +77,7 @@ public class SimpleObject implements Comparable<SimpleObject> {
 
     //region > updateName (action)
     @Action(semantics = SemanticsOf.IDEMPOTENT)
-    public SimpleObject updateName(
+    public GymInstructor updateName(
             @Parameter(maxLength = 40)
             @ParameterLayout(named = "Name")
             final String name) {
@@ -111,7 +111,7 @@ public class SimpleObject implements Comparable<SimpleObject> {
     }
 
     @Override
-    public int compareTo(final SimpleObject other) {
+    public int compareTo(final GymInstructor other) {
         return ObjectContracts.compare(this, other, "name");
     }
     //endregion

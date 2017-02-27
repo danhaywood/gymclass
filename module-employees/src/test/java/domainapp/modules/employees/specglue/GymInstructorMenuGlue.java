@@ -23,31 +23,31 @@ import org.apache.isis.core.specsupport.specs.CukeGlueAbstract;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
-import domainapp.modules.employees.dom.impl.SimpleObject;
-import domainapp.modules.employees.dom.impl.SimpleObjectMenu;
+import domainapp.modules.employees.dom.impl.GymInstructor;
+import domainapp.modules.employees.dom.impl.GymInstructorMenu;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class SimpleObjectMenuGlue extends CukeGlueAbstract {
+public class GymInstructorMenuGlue extends CukeGlueAbstract {
 
-    @Given("^there are.* (\\d+) employees objects$")
-    public void there_are_N_simple_objects(int n) throws Throwable {
+    @Given("^there are.* (\\d+) gym instructors$")
+    public void there_are_N_gym_instructors(int n) throws Throwable {
         try {
-            final List<SimpleObject> list = simpleObjectMenu().listAll();
+            final List<GymInstructor> list = employeeMenu().listAll();
             assertThat(list.size(), is(n));
-            putVar("java.util.List", "simpleObjects", list);
+            putVar("java.util.List", "gymInstructors", list);
         } finally {
             assertMocksSatisfied();
         }
     }
     
-    @When("^.*create a .*employees object$")
-    public void create_a_simple_object() throws Throwable {
-        simpleObjectMenu().create(UUID.randomUUID().toString());
+    @When("^.*create a .*gym instructor$")
+    public void create_a_gym_instructor() throws Throwable {
+        employeeMenu().create(UUID.randomUUID().toString());
     }
 
-    private SimpleObjectMenu simpleObjectMenu() {
-        return service(SimpleObjectMenu.class);
+    private GymInstructorMenu employeeMenu() {
+        return service(GymInstructorMenu.class);
     }
 
 }

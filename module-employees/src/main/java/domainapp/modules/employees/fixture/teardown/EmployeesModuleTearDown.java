@@ -26,7 +26,7 @@ public class EmployeesModuleTearDown extends FixtureScript {
 
     @Override
     protected void execute(ExecutionContext executionContext) {
-        isisJdoSupport.executeUpdate("delete from \"employees\".\"SimpleObject\"");
+        isisJdoSupport.executeUpdate("delete from \"employees\".\"GymInstructor\"");
     }
 
 
