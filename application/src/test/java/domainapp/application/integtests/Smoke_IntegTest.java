@@ -85,7 +85,7 @@ public class Smoke_IntegTest extends DomainAppIntegTestAbstract {
         transactionService.flushTransaction();
 
         // then
-        assertThat(wrap(fred).getName()).isEqualTo("Freddy");
+        assertThat(wrap(fred).getFirstName()).isEqualTo("Freddy");
 
 
 

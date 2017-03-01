@@ -68,7 +68,7 @@ public class PersonsObjectMenu_IntegTest extends PersonsModuleIntegTestAbstract 
             assertThat(all).hasSize(fs.getPeople().size());
 
             Person person = wrap(all.get(0));
-            assertThat(person.getName()).isEqualTo(fs.getPeople().get(0).getName());
+            assertThat(person.getFirstName()).isEqualTo(fs.getPeople().get(0).getFirstName());
         }
 
         @Test

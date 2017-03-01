@@ -70,10 +70,10 @@ public class PersonsObject_IntegTest extends PersonsModuleIntegTestAbstract {
         @Test
         public void accessible() throws Exception {
             // when
-            final String name = wrap(person).getName();
+            final String name = wrap(person).getFirstName();
 
             // then
-            assertThat(name).isEqualTo(person.getName());
+            assertThat(name).isEqualTo(person.getFirstName());
         }
 
         @Test
@@ -82,7 +82,7 @@ public class PersonsObject_IntegTest extends PersonsModuleIntegTestAbstract {
             expectedExceptions.expect(DisabledException.class);
 
             // when
-            wrap(person).setName("new name");
+            wrap(person).setFirstName("new name");
         }
 
     }
@@ -97,7 +97,7 @@ public class PersonsObject_IntegTest extends PersonsModuleIntegTestAbstract {
             transactionService.nextTransaction();
 
             // then
-            assertThat(wrap(person).getName()).isEqualTo("new name");
+            assertThat(wrap(person).getFirstName()).isEqualTo("new name");
         }
 
         @Test
@@ -122,7 +122,7 @@ public class PersonsObject_IntegTest extends PersonsModuleIntegTestAbstract {
         public void interpolatesName() throws Exception {
 
             // given
-            final String name = wrap(person).getName();
+            final String name = wrap(person).getFirstName();
 
             // when
             final String title = titleService.titleOf(person);

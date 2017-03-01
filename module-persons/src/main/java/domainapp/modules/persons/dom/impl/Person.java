@@ -53,21 +53,21 @@ import lombok.Setter;
                 name = "findByName",
                 value = "SELECT "
                         + "FROM domainapp.modules.persons.dom.impl.Person "
-                        + "WHERE name.indexOf(:name) >= 0 ")
+                        + "WHERE firstName.indexOf(:firstName) >= 0 ")
 })
-@javax.jdo.annotations.Unique(name="Person_name_UNQ", members = {"name"})
+@javax.jdo.annotations.Unique(name="Person_firstName_UNQ", members = {"firstName"})
 @DomainObject() // objectType inferred from @PersistenceCapable#schema
 public class Person implements Comparable<Person> {
 
-    public Person(final String name) {
-        setName(name);
+    public Person(final String firstName) {
+        setFirstName(firstName);
     }
 
     @javax.jdo.annotations.Column(allowsNull = "false", length = 40)
     @Property() // editing disabled by default, see isis.properties
     @Getter @Setter
     @Title(prepend = "Object: ")
-    private String name;
+    private String firstName;
 
     @javax.jdo.annotations.Column(allowsNull = "true", length = 4000)
     @Property(editing = Editing.ENABLED)
@@ -79,18 +79,18 @@ public class Person implements Comparable<Person> {
     @Action(semantics = SemanticsOf.IDEMPOTENT)
     public Person updateName(
             @Parameter(maxLength = 40)
-            @ParameterLayout(named = "Name")
-            final String name) {
-        setName(name);
+            @ParameterLayout(named = "First name")
+            final String firstName) {
+        setFirstName(firstName);
         return this;
     }
 
     public String default0UpdateName() {
-        return getName();
+        return getFirstName();
     }
 
-    public TranslatableString validate0UpdateName(final String name) {
-        return name != null && name.contains("!") ? TranslatableString.tr("Exclamation mark is not allowed") : null;
+    public TranslatableString validate0UpdateName(final String firstName) {
+        return firstName != null && firstName.contains("!") ? TranslatableString.tr("Exclamation mark is not allowed") : null;
     }
     //endregion
 
@@ -107,12 +107,12 @@ public class Person implements Comparable<Person> {
     //region > toString, compareTo
     @Override
     public String toString() {
-        return ObjectContracts.toString(this, "name");
+        return ObjectContracts.toString(this, "firstName");
     }
 
     @Override
     public int compareTo(final Person other) {
-        return ObjectContracts.compare(this, other, "name");
+        return ObjectContracts.compare(this, other, "firstName");
     }
     //endregion
 

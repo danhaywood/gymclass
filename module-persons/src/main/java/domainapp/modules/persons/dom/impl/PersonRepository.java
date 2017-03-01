@@ -36,16 +36,16 @@ public class PersonRepository {
         return repositoryService.allInstances(Person.class);
     }
 
-    public List<Person> findByName(final String name) {
+    public List<Person> findByName(final String firstName) {
         return repositoryService.allMatches(
                 new QueryDefault<>(
                         Person.class,
                         "findByName",
-                        "name", name));
+                        "firstName", firstName));
     }
 
-    public Person create(final String name) {
-        final Person object = new Person(name);
+    public Person create(final String firstName) {
+        final Person object = new Person(firstName);
         serviceRegistry.injectServicesInto(object);
         repositoryService.persist(object);
         return object;

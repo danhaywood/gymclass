@@ -35,14 +35,14 @@ public class Person_Test {
         @Test
         public void happyCase() throws Exception {
             // given
-            assertThat(person.getName()).isEqualTo("Foobar");
+            assertThat(person.getFirstName()).isEqualTo("Foobar");
 
             // when
             String name = "Foobar - updated";
-            person.setName(name);
+            person.setFirstName(name);
 
             // then
-            assertThat(person.getName()).isEqualTo(name);
+            assertThat(person.getFirstName()).isEqualTo(name);
         }
     }
 

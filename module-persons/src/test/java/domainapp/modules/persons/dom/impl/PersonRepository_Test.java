@@ -71,7 +71,7 @@ public class PersonRepository_Test {
                     oneOf(mockServiceRegistry).injectServicesInto(with(any(Person.class)));
                     inSequence(seq);
 
-                    oneOf(mockRepositoryService).persist(with(nameOf(someName)));
+                    oneOf(mockRepositoryService).persist(with(firstNameOf(someName)));
                     inSequence(seq);
                 }
 
@@ -82,14 +82,14 @@ public class PersonRepository_Test {
 
             // then
             assertThat(obj).isNotNull();
-            assertThat(obj.getName()).isEqualTo(someName);
+            assertThat(obj.getFirstName()).isEqualTo(someName);
         }
 
-        private static Matcher<Person> nameOf(final String name) {
+        private static Matcher<Person> firstNameOf(final String name) {
             return new TypeSafeMatcher<Person>() {
                 @Override
                 protected boolean matchesSafely(final Person item) {
-                    return name.equals(item.getName());
+                    return name.equals(item.getFirstName());
                 }
 
                 @Override
