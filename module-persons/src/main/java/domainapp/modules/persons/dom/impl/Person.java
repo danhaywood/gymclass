@@ -61,7 +61,7 @@ import lombok.Setter;
                         + "WHERE firstName == :firstName "
                         + "   && lastName == :lastName ")
 })
-@javax.jdo.annotations.Unique(name="Person_firstName_lastName_UNQ", members = {"firstName", "lastName"})
+@javax.jdo.annotations.Unique(name="Person_lastName_firstName_UNQ", members = {"lastName", "firstName"})
 @DomainObject() // objectType inferred from @PersistenceCapable#schema
 public class Person implements Comparable<Person> {
 
@@ -124,12 +124,12 @@ public class Person implements Comparable<Person> {
     //region > toString, compareTo
     @Override
     public String toString() {
-        return ObjectContracts.toString(this, "firstName", "lastName");
+        return ObjectContracts.toString(this, "lastName", "firstName");
     }
 
     @Override
     public int compareTo(final Person other) {
-        return ObjectContracts.compare(this, other, "firstName", "lastName");
+        return ObjectContracts.compare(this, other, "lastName", "firstName");
     }
     //endregion
 
