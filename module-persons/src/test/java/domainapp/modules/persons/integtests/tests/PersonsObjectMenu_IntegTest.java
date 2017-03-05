@@ -98,7 +98,7 @@ public class PersonsObjectMenu_IntegTest extends PersonsModuleIntegTestAbstract 
             transactionService.nextTransaction();
 
             // when
-            wrap(menu).create("Faz");
+            wrap(menu).create("Billy", "Mason");
 
             // then
             final List<Person> all = wrap(menu).listAll();
@@ -112,14 +112,14 @@ public class PersonsObjectMenu_IntegTest extends PersonsModuleIntegTestAbstract 
             FixtureScript fs = new PersonsModuleTearDown();
             fixtureScripts.runFixtureScript(fs, null);
             transactionService.nextTransaction();
-            wrap(menu).create("Faz");
+            wrap(menu).create("Billy", "Mason");
             transactionService.nextTransaction();
 
             // then
             expectedExceptions.expectCause(causalChainContains(SQLIntegrityConstraintViolationException.class));
 
             // when
-            wrap(menu).create("Faz");
+            wrap(menu).create("Billy", "Mason");
             transactionService.nextTransaction();
         }
 

@@ -21,29 +21,26 @@ package domainapp.modules.persons.fixture.scenario;
 
 import domainapp.modules.persons.dom.impl.Person;
 import domainapp.modules.persons.dom.impl.PersonMenu;
+import domainapp.modules.persons.dom.impl.PersonRepository;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public enum PersonData {
 
-    FOO("Foo"),
-    BAR("Bar"),
-    BAZ("Baz"),
-    FRODO("Frodo"),
-    FROYO("Froyo"),
-    FIZZ("Fizz"),
-    BIP("Bip"),
-    BOP("Bop"),
-    BANG("Bang"),
-    BOO("Boo");
+    FREDA_MCLINTOCK("Freda", "McLintock"),
+    BARRY_BLACK("Barry", "Black"),
+    SEBASTIAN_SMITH("Sebastian", "Smith"),
+    FIONA_BAGGINS("Fiona", "Baggins"),
+    HARRY_SLATER("Harry", "Slater");
 
-    private final String name;
+    private final String firstName;
+    private final String lastName;
 
     public Person createWith(final PersonMenu menu) {
-        return menu.create(name);
+        return menu.create(firstName, lastName);
     }
 
-    public Person findWith(final PersonMenu menu) {
-        return menu.findByName(name).get(0);
+    public Person findWith(final PersonRepository personRepository) {
+        return personRepository.findByFirstNameAndLastName(firstName, lastName);
     }
 }

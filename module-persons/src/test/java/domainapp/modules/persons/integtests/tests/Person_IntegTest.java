@@ -28,25 +28,24 @@ import org.junit.Test;
 import org.apache.isis.applib.fixturescripts.FixtureScripts;
 import org.apache.isis.applib.services.title.TitleService;
 import org.apache.isis.applib.services.wrapper.DisabledException;
-import org.apache.isis.applib.services.wrapper.InvalidException;
 import org.apache.isis.applib.services.xactn.TransactionService;
 import org.apache.isis.core.metamodel.services.jdosupport.Persistable_datanucleusIdLong;
 import org.apache.isis.core.metamodel.services.jdosupport.Persistable_datanucleusVersionTimestamp;
 
 import domainapp.modules.persons.dom.impl.Person;
+import domainapp.modules.persons.dom.impl.PersonRepository;
 import domainapp.modules.persons.fixture.scenario.CreatePersons;
 import domainapp.modules.persons.fixture.scenario.PersonData;
 import domainapp.modules.persons.fixture.teardown.PersonsModuleTearDown;
-import domainapp.modules.persons.dom.impl.PersonMenu;
 import domainapp.modules.persons.integtests.PersonsModuleIntegTestAbstract;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PersonsObject_IntegTest extends PersonsModuleIntegTestAbstract {
+public class Person_IntegTest extends PersonsModuleIntegTestAbstract {
 
     @Inject
     FixtureScripts fixtureScripts;
     @Inject
-    PersonMenu personMenu;
+    PersonRepository personRepository;
     @Inject
     TransactionService transactionService;
 
@@ -60,12 +59,12 @@ public class PersonsObject_IntegTest extends PersonsModuleIntegTestAbstract {
         fixtureScripts.runFixtureScript(fs, null);
         transactionService.nextTransaction();
 
-        person = PersonData.FOO.findWith(wrap(personMenu));
+        person = PersonData.FREDA_MCLINTOCK.findWith(personRepository);
 
         assertThat(person).isNotNull();
     }
 
-    public static class Name extends PersonsObject_IntegTest {
+    public static class Name extends Person_IntegTest {
 
         @Test
         public void accessible() throws Exception {
@@ -87,33 +86,24 @@ public class PersonsObject_IntegTest extends PersonsModuleIntegTestAbstract {
 
     }
 
-    public static class UpdateName extends PersonsObject_IntegTest {
+    public static class UpdateName extends Person_IntegTest {
 
         @Test
         public void can_be_updated_directly() throws Exception {
 
             // when
-            wrap(person).updateName("new name");
+            wrap(person).updateName("new first name", "new last name");
             transactionService.nextTransaction();
 
             // then
-            assertThat(wrap(person).getFirstName()).isEqualTo("new name");
+            assertThat(wrap(person).getFirstName()).isEqualTo("new first name");
+            assertThat(wrap(person).getLastName()).isEqualTo("new last name");
         }
 
-        @Test
-        public void failsValidation() throws Exception {
-
-            // expect
-            expectedExceptions.expect(InvalidException.class);
-            expectedExceptions.expectMessage("Exclamation mark is not allowed");
-
-            // when
-            wrap(person).updateName("new name!");
-        }
     }
 
 
-    public static class Title extends PersonsObject_IntegTest {
+    public static class Title extends Person_IntegTest {
 
         @Inject
         TitleService titleService;
@@ -122,17 +112,18 @@ public class PersonsObject_IntegTest extends PersonsModuleIntegTestAbstract {
         public void interpolatesName() throws Exception {
 
             // given
-            final String name = wrap(person).getFirstName();
+            final String firstName = wrap(person).getFirstName();
+            final String lastName = wrap(person).getLastName();
 
             // when
             final String title = titleService.titleOf(person);
 
             // then
-            assertThat(title).isEqualTo("Object: " + name);
+            assertThat(title).isEqualTo(firstName + " " + lastName);
         }
     }
 
-    public static class DataNucleusId extends PersonsObject_IntegTest {
+    public static class DataNucleusId extends Person_IntegTest {
 
         @Test
         public void should_be_populated() throws Exception {
@@ -144,7 +135,7 @@ public class PersonsObject_IntegTest extends PersonsModuleIntegTestAbstract {
         }
     }
 
-    public static class DataNucleusVersionTimestamp extends PersonsObject_IntegTest {
+    public static class DataNucleusVersionTimestamp extends Person_IntegTest {
 
         @Test
         public void should_be_populated() throws Exception {

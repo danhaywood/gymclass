@@ -27,6 +27,7 @@ import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.NatureOfService;
+import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.services.eventbus.ActionDomainEvent;
@@ -54,9 +55,9 @@ public class PersonMenu {
     @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT)
     @MemberOrder(sequence = "2")
     public List<Person> findByName(
-            @ParameterLayout(named="Name")
-            final String name
-    ) {
+            @Parameter(maxLength = 40)
+            @ParameterLayout(named = "Name")
+            final String name) {
         return personRepository.findByName(name);
     }
 
@@ -65,9 +66,13 @@ public class PersonMenu {
     @Action(domainEvent = CreateDomainEvent.class)
     @MemberOrder(sequence = "3")
     public Person create(
-            @ParameterLayout(named="Name")
-            final String name) {
-        return personRepository.create(name);
+            @Parameter(maxLength = 40)
+            @ParameterLayout(named = "First name")
+            final String firstName,
+            @Parameter(maxLength = 40)
+            @ParameterLayout(named = "Last name")
+            final String lastName) {
+        return personRepository.create(firstName, lastName);
     }
 
 

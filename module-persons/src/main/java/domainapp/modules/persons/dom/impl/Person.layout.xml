@@ -32,10 +32,10 @@
                         <bs3:col span="12">
                             <c:fieldSet name="Name">
                                 <c:action id="delete"/>
-                                <c:property id="name" namedEscaped="true">
+                                <c:property id="firstName" namedEscaped="true"/>
+                                <c:property id="lastName" namedEscaped="true">
                                     <c:action id="updateName"/>
                                 </c:property>
-                                <c:property id="notes" namedEscaped="true" multiLine="10" hidden="ALL_TABLES"/>
                             </c:fieldSet>
                         </bs3:col>
                     </bs3:row>
@@ -55,10 +55,32 @@
                     </bs3:row>
                 </bs3:tab>
             </bs3:tabGroup>
-            <bs3:tabGroup>
-            </bs3:tabGroup>
         </bs3:col>
         <bs3:col span="6">
+            <bs3:tabGroup>
+                <bs3:tab name="Notes">
+                    <bs3:row>
+                        <bs3:col span="12">
+                            <c:fieldSet name="Notes">
+                                <c:property id="notes" namedEscaped="true" multiLine="10" hidden="ALL_TABLES"/>
+                            </c:fieldSet>
+                        </bs3:col>
+                    </bs3:row>
+                </bs3:tab>
+                <bs3:tab name="Dummy-to-force-first-tab-to-appear-always">
+                    <bs3:row>
+                        <bs3:col span="12">
+                            <c:fieldSet name="Dummy">
+                                <c:property id="dummy"/>
+                            </c:fieldSet>
+                        </bs3:col>
+                    </bs3:row>
+                </bs3:tab>
+            </bs3:tabGroup>
+        </bs3:col>
+    </bs3:row>
+    <bs3:row>
+        <bs3:col span="12">
             <bs3:tabGroup  unreferencedCollections="true">
             </bs3:tabGroup>
         </bs3:col>

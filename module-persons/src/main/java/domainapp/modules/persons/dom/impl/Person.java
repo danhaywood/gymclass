@@ -29,7 +29,6 @@ import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.annotation.Title;
-import org.apache.isis.applib.services.i18n.TranslatableString;
 import org.apache.isis.applib.services.message.MessageService;
 import org.apache.isis.applib.services.repository.RepositoryService;
 import org.apache.isis.applib.services.title.TitleService;
@@ -53,21 +52,35 @@ import lombok.Setter;
                 name = "findByName",
                 value = "SELECT "
                         + "FROM domainapp.modules.persons.dom.impl.Person "
-                        + "WHERE firstName.indexOf(:firstName) >= 0 ")
+                        + "WHERE firstName.indexOf(:name) >= 0 "
+                        + "   || lastName.indexOf(:name) >= 0 "),
+        @javax.jdo.annotations.Query(
+                name = "findByFirstNameAndLastName",
+                value = "SELECT "
+                        + "FROM domainapp.modules.persons.dom.impl.Person "
+                        + "WHERE firstName == :firstName "
+                        + "   && lastName == :lastName ")
 })
-@javax.jdo.annotations.Unique(name="Person_firstName_UNQ", members = {"firstName"})
+@javax.jdo.annotations.Unique(name="Person_firstName_lastName_UNQ", members = {"firstName", "lastName"})
 @DomainObject() // objectType inferred from @PersistenceCapable#schema
 public class Person implements Comparable<Person> {
 
-    public Person(final String firstName) {
+    public Person(final String firstName, final String lastName) {
         setFirstName(firstName);
+        setLastName(lastName);
     }
 
     @javax.jdo.annotations.Column(allowsNull = "false", length = 40)
-    @Property() // editing disabled by default, see isis.properties
+    @Property()
     @Getter @Setter
-    @Title(prepend = "Object: ")
+    @Title(sequence = "1")
     private String firstName;
+
+    @javax.jdo.annotations.Column(allowsNull = "false", length = 40)
+    @Property()
+    @Getter @Setter
+    @Title(sequence = "2", prepend = " ")
+    private String lastName;
 
     @javax.jdo.annotations.Column(allowsNull = "true", length = 4000)
     @Property(editing = Editing.ENABLED)
@@ -80,8 +93,12 @@ public class Person implements Comparable<Person> {
     public Person updateName(
             @Parameter(maxLength = 40)
             @ParameterLayout(named = "First name")
-            final String firstName) {
+            final String firstName,
+            @Parameter(maxLength = 40)
+            @ParameterLayout(named = "Last name")
+            final String lastName) {
         setFirstName(firstName);
+        setLastName(lastName);
         return this;
     }
 
@@ -89,8 +106,8 @@ public class Person implements Comparable<Person> {
         return getFirstName();
     }
 
-    public TranslatableString validate0UpdateName(final String firstName) {
-        return firstName != null && firstName.contains("!") ? TranslatableString.tr("Exclamation mark is not allowed") : null;
+    public String default1UpdateName() {
+        return getLastName();
     }
     //endregion
 
@@ -107,12 +124,12 @@ public class Person implements Comparable<Person> {
     //region > toString, compareTo
     @Override
     public String toString() {
-        return ObjectContracts.toString(this, "firstName");
+        return ObjectContracts.toString(this, "firstName", "lastName");
     }
 
     @Override
     public int compareTo(final Person other) {
-        return ObjectContracts.compare(this, other, "firstName");
+        return ObjectContracts.compare(this, other, "firstName", "lastName");
     }
     //endregion
 

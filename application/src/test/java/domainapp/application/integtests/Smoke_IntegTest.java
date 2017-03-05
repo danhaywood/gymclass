@@ -59,7 +59,7 @@ public class Smoke_IntegTest extends DomainAppIntegTestAbstract {
 
 
         // when
-        final Person fred = wrap(menu).create("Fred");
+        final Person fred = wrap(menu).create("Fred", "McCartney");
         transactionService.flushTransaction();
 
         // then
@@ -70,7 +70,7 @@ public class Smoke_IntegTest extends DomainAppIntegTestAbstract {
 
 
         // when
-        final Person bill = wrap(menu).create("Bill");
+        final Person bill = wrap(menu).create("Bill", "Harrison");
         transactionService.flushTransaction();
 
         // then
@@ -81,11 +81,12 @@ public class Smoke_IntegTest extends DomainAppIntegTestAbstract {
 
 
         // when
-        wrap(fred).updateName("Freddy");
+        wrap(fred).updateName("Freddy", "McLintock");
         transactionService.flushTransaction();
 
         // then
         assertThat(wrap(fred).getFirstName()).isEqualTo("Freddy");
+        assertThat(wrap(fred).getLastName()).isEqualTo("McLintock");
 
 
 

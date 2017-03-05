@@ -36,16 +36,25 @@ public class PersonRepository {
         return repositoryService.allInstances(Person.class);
     }
 
-    public List<Person> findByName(final String firstName) {
+    public List<Person> findByName(final String name) {
         return repositoryService.allMatches(
                 new QueryDefault<>(
                         Person.class,
                         "findByName",
-                        "firstName", firstName));
+                        "name", name));
     }
 
-    public Person create(final String firstName) {
-        final Person object = new Person(firstName);
+    public Person findByFirstNameAndLastName(final String firstName, final String lastName) {
+        return repositoryService.uniqueMatch(
+                new QueryDefault<>(
+                        Person.class,
+                        "findByFirstNameAndLastName",
+                        "firstName", firstName,
+                        "lastName", lastName));
+    }
+
+    public Person create(final String firstName, final String lastName) {
+        final Person object = new Person(firstName, lastName);
         serviceRegistry.injectServicesInto(object);
         repositoryService.persist(object);
         return object;

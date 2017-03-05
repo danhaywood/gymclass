@@ -62,7 +62,8 @@ public class PersonRepository_Test {
         @Test
         public void happyCase() throws Exception {
 
-            final String someName = "Foobar";
+            final String someFirstName = "Billy";
+            final String someLastName = "Mason";
 
             // given
             final Sequence seq = context.sequence("create");
@@ -71,18 +72,18 @@ public class PersonRepository_Test {
                     oneOf(mockServiceRegistry).injectServicesInto(with(any(Person.class)));
                     inSequence(seq);
 
-                    oneOf(mockRepositoryService).persist(with(firstNameOf(someName)));
+                    oneOf(mockRepositoryService).persist(with(firstNameOf(someFirstName)));
                     inSequence(seq);
                 }
 
             });
 
             // when
-            final Person obj = personRepository.create(someName);
+            final Person obj = personRepository.create(someFirstName, someLastName);
 
             // then
             assertThat(obj).isNotNull();
-            assertThat(obj.getFirstName()).isEqualTo(someName);
+            assertThat(obj.getFirstName()).isEqualTo(someFirstName);
         }
 
         private static Matcher<Person> firstNameOf(final String name) {

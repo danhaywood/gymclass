@@ -27,18 +27,19 @@ public class Person_Test {
 
     @Before
     public void setUp() throws Exception {
-        person = new Person("Foobar");
+        person = new Person("Billy", "Mason");
     }
 
-    public static class Name extends Person_Test {
+    public static class FirstName extends Person_Test {
 
         @Test
         public void happyCase() throws Exception {
             // given
-            assertThat(person.getFirstName()).isEqualTo("Foobar");
+            assertThat(person.getFirstName()).isEqualTo("Billy");
+            assertThat(person.getLastName()).isEqualTo("Mason");
 
             // when
-            String name = "Foobar - updated";
+            String name = "William";
             person.setFirstName(name);
 
             // then
