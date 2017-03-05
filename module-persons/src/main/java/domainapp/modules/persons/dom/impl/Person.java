@@ -18,17 +18,22 @@
  */
 package domainapp.modules.persons.dom.impl;
 
+import java.util.Map;
+
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.VersionStrategy;
 
 import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.DomainObject;
+import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.Editing;
+import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.annotation.Title;
+import org.apache.isis.applib.services.exceprecog.ExceptionRecognizer2;
 import org.apache.isis.applib.services.message.MessageService;
 import org.apache.isis.applib.services.repository.RepositoryService;
 import org.apache.isis.applib.services.title.TitleService;
@@ -144,4 +149,32 @@ public class Person implements Comparable<Person> {
     MessageService messageService;
     //endregion
 
+    @DomainService(nature = NatureOfService.DOMAIN)
+    public static class UniqueConstraintViolationRecognizer implements ExceptionRecognizer2 {
+
+        @Override
+        public void init(final Map<String, String> properties) {
+        }
+
+        @Override
+        public void shutdown() {
+        }
+
+        @Override
+        public String recognize(final Throwable ex) {
+            final String message = ex.getMessage();
+            if(message != null && message.contains("Person_lastName_firstName_UNQ")) {
+                return "A Person with that (first and last) name already exists";
+            }
+            return null;
+        }
+
+        @Override
+        public Recognition recognize2(final Throwable ex) {
+            final String reason = recognize(ex);
+            return reason != null
+                    ? new Recognition(Category.CONSTRAINT_VIOLATION, reason)
+                    : null;
+        }
+    }
 }
