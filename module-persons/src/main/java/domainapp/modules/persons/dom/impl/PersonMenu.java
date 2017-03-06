@@ -56,7 +56,6 @@ public class PersonMenu {
     @MemberOrder(sequence = "2")
     public List<Person> findByName(
             @Parameter(maxLength = 40)
-            @ParameterLayout(named = "Name")
             final String name) {
         return personRepository.findByName(name);
     }
@@ -67,10 +66,8 @@ public class PersonMenu {
     @MemberOrder(sequence = "3")
     public Person create(
             @Parameter(maxLength = 40)
-            @ParameterLayout(named = "First name")
             final String firstName,
             @Parameter(maxLength = 40)
-            @ParameterLayout(named = "Last name")
             final String lastName) {
         return personRepository.create(firstName, lastName);
     }

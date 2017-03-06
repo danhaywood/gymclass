@@ -97,10 +97,8 @@ public class Person implements Comparable<Person> {
     @Action(semantics = SemanticsOf.IDEMPOTENT)
     public Person updateName(
             @Parameter(maxLength = 40)
-            @ParameterLayout(named = "First name")
             final String firstName,
             @Parameter(maxLength = 40)
-            @ParameterLayout(named = "Last name")
             final String lastName) {
         setFirstName(firstName);
         setLastName(lastName);
