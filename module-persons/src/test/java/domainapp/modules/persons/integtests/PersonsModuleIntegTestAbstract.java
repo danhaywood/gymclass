@@ -76,7 +76,7 @@ public abstract class PersonsModuleIntegTestAbstract extends IntegrationTestAbst
     public static class ModuleFixtureScriptsSpecificationProvider implements FixtureScriptsSpecificationProvider {
         @Override
         public FixtureScriptsSpecification getSpecification() {
-            return FixtureScriptsSpecification.builder("domainapp.modules.simple").with(
+            return FixtureScriptsSpecification.builder("domainapp.modules.person").with(
                     FixtureScripts.MultipleExecutionStrategy.EXECUTE_ONCE_BY_VALUE).build();
         }
     }
